@@ -1,32 +1,121 @@
-/* css/variables.css — Jetons de design épurés (thème clair unique) */
-:root {
-  --bg-base: #F8FAFC;
-  --bg-card: #FFFFFF;
-  --border-card: #E2E8F0;
-  --border-focus: #0D9488;
-  --text-main: #0F172A;
-  --text-muted: #64748B;
-  --text-faint: #94A3B8;
-  --teal: #0D9488;
-  --teal-hover: #0F766E;
-  --teal-light: #F0FDFA;
-  --teal-border: #99F6E4;
-  --radius-lg: 12px;
-  --radius-md: 8px;
+/* css/variables.css — Système de design ChimieLab : Dark Chocolate & Champagne */
+
+:root,
+[data-theme="dark"] {
+  /* Palette de surfaces : Dark Chocolate & Warm Obsidian */
+  --bg-main: #12100F;
+  --bg-secondary: #191614;
+  --bg-card: #201C19;
+  --bg-card-hover: #26211D;
+  --bg-elevated: #27211C;
+  --bg-input: #171412;
+  --bg-input-focus: #1C1815;
+
+  /* Typographie : Ivory Cream & Champagne Mist */
+  --text-primary: #F5EFE5;
+  --text-secondary: #B5A99A;
+  --text-muted: #827566;
+  --text-faint: #594F44;
+
+  /* Accents de luxe : Champagne Gold */
+  --accent-gold: #D4AD70;
+  --accent-gold-hover: #E5C287;
+  --accent-gold-bright: #F0D5A5;
+  --accent-gold-dim: rgba(212, 173, 112, 0.12);
+  --accent-gold-glow: rgba(212, 173, 112, 0.22);
+
+  /* Bordures de haute précision */
+  --border-subtle: rgba(212, 173, 112, 0.14);
+  --border-medium: rgba(212, 173, 112, 0.26);
+  --border-strong: rgba(212, 173, 112, 0.45);
+  --border-card: rgba(212, 173, 112, 0.16);
+
+  /* Ombres et profondeur */
+  --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(212, 173, 112, 0.12);
+  --gold-glow: 0 0 28px rgba(212, 173, 112, 0.14);
+  --button-glow: 0 8px 24px rgba(212, 173, 112, 0.28);
+
+  /* États de validation */
+  --error-bg: #261212;
+  --error-text: #FCA5A5;
+  --error-border: rgba(239, 68, 68, 0.35);
+  --success-bg: #122417;
+  --success-text: #86EFAC;
+  --success-border: rgba(34, 197, 94, 0.35);
+
+  /* Blocs mathématiques et formules */
+  --formula-bg: #181512;
+  --formula-text: #F5EFE5;
+  --formula-border: #D4AD70;
+
+  /* Cartes sélectionnées (Mode Actif : style plaque instrument ivoire) */
+  --mode-active-bg: #F5EFE5;
+  --mode-active-text: #12100F;
+  --mode-active-sub: #4A4036;
+  --mode-active-border: #D4AD70;
+
+  /* Typographie */
+  --font-serif: 'Instrument Serif', 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, Monaco, monospace;
+
+  /* Rayons de courbure */
   --radius-sm: 6px;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', Consolas, Monaco, monospace;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-pill: 9999px;
+}
+
+[data-theme="light"] {
+  /* Palette de surfaces : Luxury Champagne Light */
+  --bg-main: #F7F4EE;
+  --bg-secondary: #EFEAE1;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FCFAF7;
+  --bg-elevated: #F4EFE6;
+  --bg-input: #FFFFFF;
+  --bg-input-focus: #FFFFFF;
+
+  /* Typographie : Rich Ink & Warm Sepia */
+  --text-primary: #1C1814;
+  --text-secondary: #6B5E51;
+  --text-muted: #9E8F80;
+  --text-faint: #C7BCB0;
+
+  /* Accents de luxe : Deep Old Gold */
+  --accent-gold: #9E7432;
+  --accent-gold-hover: #825E27;
+  --accent-gold-bright: #B58842;
+  --accent-gold-dim: rgba(158, 116, 50, 0.08);
+  --accent-gold-glow: rgba(158, 116, 50, 0.18);
+
+  /* Bordures */
+  --border-subtle: rgba(158, 116, 50, 0.16);
+  --border-medium: rgba(158, 116, 50, 0.28);
+  --border-strong: rgba(158, 116, 50, 0.50);
+  --border-card: rgba(158, 116, 50, 0.18);
+
+  /* Ombres et profondeur */
+  --card-shadow: 0 10px 30px -5px rgba(28, 24, 20, 0.08), 0 0 0 1px rgba(158, 116, 50, 0.14);
+  --gold-glow: 0 0 25px rgba(158, 116, 50, 0.10);
+  --button-glow: 0 8px 22px rgba(158, 116, 50, 0.24);
+
+  /* États de validation */
   --error-bg: #FEF2F2;
   --error-text: #991B1B;
-  --error-border: #FECACA;
+  --error-border: rgba(239, 68, 68, 0.30);
   --success-bg: #F0FDF4;
   --success-text: #166534;
-  --success-border: #BBF7D0;
-  --input-bg: #FFFFFF;
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-  --formula-bg: #F1F5F9;
-  --formula-text: #0F172A;
-  --formula-border: #0D9488;
-  --table-border: #E2E8F0;
+  --success-border: rgba(34, 197, 94, 0.30);
+
+  /* Blocs mathématiques et formules */
+  --formula-bg: #F3ECE1;
+  --formula-text: #1C1814;
+  --formula-border: #9E7432;
+
+  /* Cartes sélectionnées (Mode Actif en mode clair) */
+  --mode-active-bg: #1C1814;
+  --mode-active-text: #F7F4EE;
+  --mode-active-sub: #B5A99A;
+  --mode-active-border: #9E7432;
 }

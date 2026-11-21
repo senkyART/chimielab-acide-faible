@@ -1,6 +1,71 @@
 /* js/form.js — Gestion du formulaire de saisie, écouteurs d'événements et calcul */
 
 /**
+ * Met à jour la bannière contextuelle (Section B) décrivant le mode sélectionné.
+ */
+function updateModeContextBanner() {
+  const banner = document.getElementById('mode-context-banner');
+  if (!banner) return;
+
+  if (state.mode === 1) {
+    banner.innerHTML = `
+      <div class="context-desc">
+        Vous connaissez la concentration initiale <strong>C</strong> et le <strong>pH</strong> mesuré de la solution.
+      </div>
+      <div class="context-chips-group">
+        <span class="context-label">Données :</span>
+        <span class="chip-tag accent">C</span>
+        <span class="chip-tag accent">pH</span>
+        <span class="chip-tag">(λ_B facultatif)</span>
+        <span class="chip-arrow">→</span>
+        <span class="context-label">Résultats :</span>
+        <span class="chip-tag">[H₃O⁺]</span>
+        <span class="chip-tag">τ</span>
+        <span class="chip-tag">K</span>
+        <span class="chip-tag">(σ)</span>
+      </div>
+    `;
+  } else if (state.mode === 2) {
+    banner.innerHTML = `
+      <div class="context-desc">
+        Vous connaissez la concentration <strong>C</strong>, la conductivité <strong>σ</strong> et les conductivités molaires <strong>λ</strong>.
+      </div>
+      <div class="context-chips-group">
+        <span class="context-label">Données :</span>
+        <span class="chip-tag accent">C</span>
+        <span class="chip-tag accent">σ</span>
+        <span class="chip-tag accent">λ_B</span>
+        <span class="chip-tag accent">λ_H₃O⁺</span>
+        <span class="chip-arrow">→</span>
+        <span class="context-label">Résultats :</span>
+        <span class="chip-tag">[H₃O⁺]</span>
+        <span class="chip-tag">τ</span>
+        <span class="chip-tag">K</span>
+      </div>
+    `;
+  } else if (state.mode === 3) {
+    banner.innerHTML = `
+      <div class="context-desc">
+        Vous connaissez la concentration <strong>C</strong> (ou <strong>C'</strong> si diluée) et la constante <strong>K</strong>.
+      </div>
+      <div class="context-chips-group">
+        <span class="context-label">Données :</span>
+        <span class="chip-tag accent">C</span>
+        <span class="chip-tag accent">K</span>
+        <span class="chip-tag">(n dilution)</span>
+        <span class="chip-tag">(λ_B facultatif)</span>
+        <span class="chip-arrow">→</span>
+        <span class="context-label">Résultats :</span>
+        <span class="chip-tag">[H₃O⁺]</span>
+        <span class="chip-tag">pH</span>
+        <span class="chip-tag">τ</span>
+        <span class="chip-tag">(σ)</span>
+      </div>
+    `;
+  }
+}
+
+/**
  * Génère et insère les champs de saisie correspondant au mode actif.
  */
 function renderFormInputs() {
@@ -9,12 +74,13 @@ function renderFormInputs() {
   if (!container) return;
 
   container.innerHTML = '';
+  updateModeContextBanner();
 
   // Affichage initial de la valeur par défaut de λ_H₃O⁺ selon l'unité (Fix F4)
   const lambdaH3ODisplay = (state.lambdaUnit === 'mS') ? "35.0" : "0.035";
 
   if (state.mode === 1) {
-    if (title) title.textContent = "Paramètres — Mode 1 (C et pH)";
+    if (title) title.textContent = "Paramètres de l'exercice — Mode 1 (C et pH)";
     container.innerHTML = `
       <div class="input-group">
         <div class="input-label-row">
@@ -28,7 +94,7 @@ function renderFormInputs() {
 
       <div class="input-group">
         <div class="input-label-row">
-          <label for="inp-pH">pH mesuré</label>
+          <label for="inp-pH">pH mesuré de la solution</label>
         </div>
         <div class="input-wrapper">
           <input type="text" id="inp-pH" class="input-field" placeholder="ex: 3.41" value="3.41">
@@ -36,7 +102,10 @@ function renderFormInputs() {
       </div>
 
       <div class="conductivity-group">
-        <span class="conductivity-caption">Pour calculer σ (optionnel)</span>
+        <span class="conductivity-caption">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2v7.31L4.69 17.5A2 2 0 0 0 6.42 20h11.16a2 2 0 0 0 1.73-2.5L14 9.31V2"/></svg>
+          Pour calculer la conductivité σ (optionnel)
+        </span>
         <div class="conductivity-fields">
           <div class="input-group">
             <div class="input-label-row">
@@ -66,7 +135,7 @@ function renderFormInputs() {
       </div>
     `;
   } else if (state.mode === 2) {
-    if (title) title.textContent = "Paramètres — Mode 2 (C et σ)";
+    if (title) title.textContent = "Paramètres de l'exercice — Mode 2 (C et Conductimétrie)";
     container.innerHTML = `
       <div class="input-group">
         <div class="input-label-row">
@@ -80,7 +149,7 @@ function renderFormInputs() {
 
       <div class="input-group">
         <div class="input-label-row">
-          <label for="inp-sigma">Conductivité de la solution σ</label>
+          <label for="inp-sigma">Conductivité mesurée σ</label>
         </div>
         <div class="input-wrapper">
           <input type="text" id="inp-sigma" class="input-field" placeholder="ex: 0.0152 ou 15,2" value="0.0152">
@@ -115,7 +184,7 @@ function renderFormInputs() {
       </div>
     `;
   } else if (state.mode === 3) {
-    if (title) title.textContent = "Paramètres — Mode 3 (C et K)";
+    if (title) title.textContent = "Paramètres de l'exercice — Mode 3 (C et Constante K)";
     container.innerHTML = `
       <div class="input-group">
         <div class="input-label-row">
@@ -142,12 +211,15 @@ function renderFormInputs() {
           <span class="optional-tag">optionnel (C' = C / n)</span>
         </div>
         <div class="input-wrapper">
-          <input type="text" id="inp-n" class="input-field" placeholder="ex: 10 pour C/10">
+          <input type="text" id="inp-n" class="input-field" placeholder="ex: 10 pour une solution diluée 10 fois">
         </div>
       </div>
 
       <div class="conductivity-group">
-        <span class="conductivity-caption">Pour calculer σ (optionnel)</span>
+        <span class="conductivity-caption">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2v7.31L4.69 17.5A2 2 0 0 0 6.42 20h11.16a2 2 0 0 0 1.73-2.5L14 9.31V2"/></svg>
+          Pour calculer la conductivité σ (optionnel)
+        </span>
         <div class="conductivity-fields">
           <div class="input-group">
             <div class="input-label-row">
@@ -250,13 +322,13 @@ function attachInputListeners() {
     });
   }
 
-  // Écoute de la touche Entrée sur les champs pour déclencher le calcul (aucun calcul en direct)
+  // Écoute de la touche Entrée sur les champs pour déclencher le calcul
   const inputs = document.querySelectorAll('.input-field');
   inputs.forEach(input => {
     input.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         e.preventDefault();
-        triggerCalculate();
+        triggerCalculate(true);
       }
     });
   });
@@ -264,8 +336,10 @@ function attachInputListeners() {
 
 /**
  * Déclenche le calcul, la validation stricte et l'affichage des résultats ou de l'erreur.
+ *
+ * @param {boolean} [recordHistory=true] - Indique s'il faut ajouter le résultat à l'historique.
  */
-function triggerCalculate() {
+function triggerCalculate(recordHistory = true) {
   const errBox = document.getElementById('error-box');
   const resSection = document.getElementById('results-section');
   if (!errBox || !resSection) return;
@@ -321,7 +395,7 @@ function triggerCalculate() {
         lambda_H3O_SI = lambdaToSI(lambdaH3O_raw, state.lambdaUnit);
       } else {
         lambda_B_SI = null;
-        lambda_H3O_SI = 0.035; // Valeur transmise à calcModeX (ignorée car lambda_B_SI === null)
+        lambda_H3O_SI = 0.035; // Valeur par défaut transmise à calcModeX (ignorée car lambda_B_SI === null)
       }
     }
 
@@ -389,6 +463,13 @@ function triggerCalculate() {
 
     displayResults(res);
 
+    if (recordHistory && typeof addToHistory === 'function') {
+      addToHistory(res);
+    }
+
+    // Défilement doux vers les résultats
+    resSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
   } catch (err) {
     // Erreur : masquage des résultats et affichage sous le bouton Calculer
     state.lastResult = null;
@@ -407,12 +488,19 @@ function selectMode(m) {
   state.mode = m;
   document.querySelectorAll('.mode-card').forEach(c => {
     const isCurrent = parseInt(c.getAttribute('data-mode'), 10) === m;
+    const indicator = c.querySelector('.mode-indicator');
     if (isCurrent) {
       c.classList.add('active');
       c.setAttribute('aria-selected', 'true');
+      if (indicator) {
+        indicator.innerHTML = '<svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.8 7L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      }
     } else {
       c.classList.remove('active');
       c.setAttribute('aria-selected', 'false');
+      if (indicator) {
+        indicator.innerHTML = '';
+      }
     }
   });
 

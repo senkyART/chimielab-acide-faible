@@ -1,93 +1,211 @@
 <!DOCTYPE html>
-<!-- index.html — Interface simplifiée pour la résolution d'acide faible dans l'eau -->
-<html lang="fr">
+<!-- index.html — ChimieLab : Instrument Scientifique de Résolution d'Acide Faible dans l'Eau -->
+<html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ChimieLab — Résolution Acide Faible dans l'Eau</title>
+  
+  <!-- Polices Google Fonts d'exception : Instrument Serif + Manrope + JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Feuilles de style ChimieLab -->
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
   <div class="container">
-    <!-- En-tête épuré -->
-    <header>
-      <div class="brand-title">
-        <h1>ChimieLab — Acide Faible</h1>
-        <p>Résolution d'exercices d'acide faible dans l'eau</p>
+    
+    <!-- EN-TÊTE ET IDENTITÉ DE MARQUE -->
+    <header class="site-header">
+      <div class="brand-block">
+        <div class="brand-emblem" aria-hidden="true">
+          <!-- Icône de gouttelette / fiole stylisée en or champagne -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+          </svg>
+        </div>
+        <div class="brand-titles">
+          <h1 class="brand-name">ChimieLab</h1>
+          <span class="brand-subtitle">Acide Faible dans l'Eau · Solution Pas à Pas</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Bouton Historique -->
+        <button type="button" class="header-btn" id="btn-toggle-history" title="Afficher l'historique des calculs">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Historique</span>
+          <span class="btn-badge" id="history-count-badge" style="display: none;">0</span>
+        </button>
+
+        <!-- Bouton Testeur -->
+        <button type="button" class="header-btn" id="btn-open-tester" title="Lancer la suite de tests automatisée">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2v7.31L4.69 17.5A2 2 0 0 0 6.42 20h11.16a2 2 0 0 0 1.73-2.5L14 9.31V2"/><line x1="8.5" y1="2" x2="15.5" y2="2"/></svg>
+          <span>Tester</span>
+        </button>
+
+        <!-- Basculeur Thème (Dark Chocolate & Champagne / Light) -->
+        <button type="button" class="header-btn theme-toggle-btn" id="btn-theme-toggle" aria-label="Changer de thème">
+          <span id="theme-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          </span>
+        </button>
       </div>
     </header>
 
-    <!-- 1. Sélecteur des 3 modes en une rangée -->
-    <div class="modes-grid" role="tablist">
-      <button type="button" class="mode-card active" id="card-mode-1" role="tab" aria-selected="true" data-mode="1">
-        <span class="mode-title">Mode 1</span>
-        <span class="mode-subtitle">C et pH</span>
-      </button>
-      <button type="button" class="mode-card" id="card-mode-2" role="tab" aria-selected="false" data-mode="2">
-        <span class="mode-title">Mode 2</span>
-        <span class="mode-subtitle">C et σ</span>
-      </button>
-      <button type="button" class="mode-card" id="card-mode-3" role="tab" aria-selected="false" data-mode="3">
-        <span class="mode-title">Mode 3</span>
-        <span class="mode-subtitle">C et K</span>
-      </button>
-    </div>
-
-    <!-- 2. Panneau de saisie et bouton Calculer -->
-    <section class="glass-panel">
-      <div class="form-section-title">
-        <span id="form-title">Paramètres — Mode 1</span>
+    <!-- SECTION I : SÉLECTION DU MODE -->
+    <section>
+      <div class="section-header-block">
+        <span class="section-num-badge">I</span>
+        <div class="section-header-text">
+          <h2>Quelle est la situation de l'exercice ?</h2>
+          <p>Choisissez ce que l'énoncé vous donne.</p>
+        </div>
       </div>
 
-      <form id="calc-form">
-        <div class="inputs-grid" id="inputs-container">
-          <!-- Champs injectés dynamiquement par form.js -->
-        </div>
+      <div class="modes-grid" role="tablist">
+        <button type="button" class="mode-card active" id="card-mode-1" role="tab" aria-selected="true" data-mode="1">
+          <div class="mode-card-header">
+            <span class="mode-tag">MODE 01</span>
+            <span class="mode-indicator">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.8 7L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <div>
+            <span class="mode-title">C et pH</span>
+            <span class="mode-subtitle">Mesure au pH-mètre</span>
+          </div>
+        </button>
 
-        <div class="form-actions">
-          <button type="submit" class="btn-primary" id="btn-calc">Calculer</button>
-          <button type="button" class="btn-link" id="btn-reset">Réinitialiser</button>
-        </div>
-      </form>
+        <button type="button" class="mode-card" id="card-mode-2" role="tab" aria-selected="false" data-mode="2">
+          <div class="mode-card-header">
+            <span class="mode-tag">MODE 02</span>
+            <span class="mode-indicator"></span>
+          </div>
+          <div>
+            <span class="mode-title">C et σ</span>
+            <span class="mode-subtitle">Conductimétrie</span>
+          </div>
+        </button>
 
-      <!-- Message d'erreur (affiché sous le bouton après clic) -->
-      <div class="error-box" id="error-box"></div>
+        <button type="button" class="mode-card" id="card-mode-3" role="tab" aria-selected="false" data-mode="3">
+          <div class="mode-card-header">
+            <span class="mode-tag">MODE 03</span>
+            <span class="mode-indicator"></span>
+          </div>
+          <div>
+            <span class="mode-title">C et K</span>
+            <span class="mode-subtitle">± dilution</span>
+          </div>
+        </button>
+      </div>
+
+      <!-- BANNIÈRE CONTEXTUELLE DE SITUATION (SECTION B) -->
+      <div class="mode-context-banner" id="mode-context-banner">
+        <!-- Rempli dynamiquement par form.js -->
+      </div>
     </section>
 
-    <!-- 3. Résultats (visibles uniquement après clic sur Calculer ou Entrée) -->
+    <!-- SECTION II : ESPACE DE SAISIE DES DONNÉES -->
+    <section>
+      <div class="section-header-block">
+        <span class="section-num-badge">II</span>
+        <div class="section-header-text">
+          <h2>Saisissez les données</h2>
+          <p>Point ou virgule acceptés · notation scientifique (ex: 1.0e-2 ou 10^-2) supportée.</p>
+        </div>
+      </div>
+
+      <div class="glass-panel">
+        <form id="calc-form">
+          <div class="inputs-grid" id="inputs-container">
+            <!-- Champs injectés dynamiquement par form.js -->
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-primary" id="btn-calc">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <span>Calculer la solution</span>
+            </button>
+            <button type="button" class="btn-link" id="btn-reset">Réinitialiser les paramètres</button>
+          </div>
+        </form>
+
+        <!-- Message d'erreur (affiché sous le bouton en cas de saisie invalide) -->
+        <div class="error-box" id="error-box"></div>
+      </div>
+    </section>
+
+    <!-- SECTION III : RÉSULTATS ET RÉDACTION PAS À PAS -->
     <section id="results-section" style="display: none;">
-      <!-- Cartes synthétiques -->
+      <div class="results-header-row">
+        <div class="section-header-block" style="margin-bottom: 0;">
+          <span class="section-num-badge">III</span>
+          <div class="section-header-text">
+            <h2>Résultats de l'Équilibre</h2>
+            <p>Grandeurs thermodynamiques déterminées à l'équilibre chimique.</p>
+          </div>
+        </div>
+        <span class="results-status-badge" id="results-status-badge">✓ Équilibre thermodynamique validé</span>
+      </div>
+
+      <!-- Grille des cartes de résultat -->
       <div class="results-grid" id="results-grid"></div>
 
-      <!-- Rédaction pas à pas d'examen -->
+      <!-- Bloc de rédaction pas à pas de type examen -->
       <div class="solution-block">
-        <h2 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 12px; color: var(--text-main);">
-          Rédaction Pas à Pas
-        </h2>
-        <div id="solution-steps-list"></div>
+        <div class="solution-header-row">
+          <div class="solution-title-group">
+            <h3>Rédaction Pas à Pas — Type Examen</h3>
+            <p>Structure rigoureuse : Formule littérale → Application numérique → Calcul intermédiaire → Résultat</p>
+          </div>
 
-        <!-- Bouton Copier la solution sous la rédaction -->
-        <div class="solution-actions">
-          <button type="button" class="btn-secondary" id="btn-copy-solution">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            Copier la solution
-          </button>
+          <div class="solution-actions">
+            <button type="button" class="btn-secondary" id="btn-copy-solution" title="Copier la solution au format texte">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>Copier la solution</span>
+            </button>
+            <button type="button" class="btn-secondary" id="btn-export-pdf" title="Imprimer ou exporter en PDF la rédaction">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              <span>Exporter en PDF</span>
+            </button>
+          </div>
         </div>
+
+        <div id="solution-steps-list"></div>
       </div>
     </section>
 
-    <!-- Pied de page avec lien discret pour le testeur -->
+    <!-- SECTION HISTORIQUE EN MÉMOIRE (5 DERNIERS CALCULS) -->
+    <section class="history-section" id="history-section" style="display: none;">
+      <div class="history-header">
+        <h3>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Historique des Calculs Récents (5 derniers)
+        </h3>
+      </div>
+      <p class="history-empty-text" id="history-empty">Aucun calcul enregistré dans cette session.</p>
+      <div class="history-list" id="history-list"></div>
+    </section>
+
+    <!-- PIED DE PAGE SCIENTIFIQUE -->
     <footer class="site-footer">
-      <button type="button" class="footer-link" id="btn-open-tester">Tester (suite de tests)</button>
+      <div class="footer-brand">
+        ChimieLab — Instrument de Haute Précision pour Acide Faible
+      </div>
+      <div class="footer-links">
+        <button type="button" class="footer-link" id="btn-footer-tester">Lancer le Testeur</button>
+        <span>Auteur : Senky</span>
+      </div>
     </footer>
+
   </div>
 
-  <!-- Modale du Testeur Automatisé -->
+  <!-- MODALE DU TESTEUR AUTOMATISÉ (ASSERTIONS SCIENTIFIQUES RÉELLES) -->
   <div class="modal-overlay" id="tester-modal">
     <div class="modal-box">
       <div class="modal-header">
@@ -95,13 +213,13 @@
         <button type="button" class="btn-close" id="btn-close-tester">Fermer</button>
       </div>
       <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">
-        Vérifications numériques réelles (tolérance relative 0,5 %, pH : 0,01).
+        Vérifications numériques réelles sur le moteur de calcul (tolérance relative 0,5 %, pH : 0,01).
       </p>
       <div id="tester-summary" style="font-weight: 600; font-size: 0.9rem; margin-bottom: 14px;"></div>
       <table class="test-table">
         <thead>
           <tr>
-            <th>Test</th>
+            <th>Vérification</th>
             <th>Attendu</th>
             <th>Obtenu</th>
             <th>Statut</th>
@@ -112,16 +230,17 @@
     </div>
   </div>
 
-  <!-- Notification Toast -->
+  <!-- NOTIFICATION TOAST FLOTTANTE -->
   <div class="toast" id="toast">Copié dans le presse-papiers !</div>
 
-  <!-- Scripts JavaScript (chargés dans l'ordre strict prescrit) -->
+  <!-- SCRIPTS JAVASCRIPT (CHARGÉS DANS L'ORDRE STRICT) -->
   <script src="js/parser.js"></script>
   <script src="js/format.js"></script>
   <script src="js/units.js"></script>
   <script src="js/calc.js"></script>
   <script src="js/state.js"></script>
   <script src="js/clipboard.js"></script>
+  <script src="js/history.js"></script>
   <script src="js/solution.js"></script>
   <script src="js/form.js"></script>
   <script src="js/tester.js"></script>
