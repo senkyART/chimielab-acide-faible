@@ -263,8 +263,8 @@ function buildPlainTextSolution(res) {
     lines.push(`• pH mesuré = ${formatNumberPlain(res.pH, 'pH')}`);
     if (res.lambda_B_SI !== null) {
       lines.push(`• λ_B = ${formatNumberPlain(res.lambda_B_SI)} S·m²·mol⁻¹`);
+      lines.push(`• λ_H₃O⁺ = ${formatNumberPlain(res.lambda_H3O_SI)} S·m²·mol⁻¹`);
     }
-    lines.push(`• λ_H₃O⁺ = ${formatNumberPlain(res.lambda_H3O_SI)} S·m²·mol⁻¹`);
     lines.push("");
     lines.push("ÉTAPES DE RÉSOLUTION :");
     lines.push("1) Concentration en ions oxonium [H₃O⁺] :");
@@ -319,8 +319,10 @@ function buildPlainTextSolution(res) {
   } else if (res.mode === 3) {
     if (res.n !== null) lines.push(`• Facteur de dilution n = ${res.n}`);
     lines.push(`• Constante d'acidité K = ${formatNumberPlain(res.K)}`);
-    if (res.lambda_B_SI !== null) lines.push(`• λ_B = ${formatNumberPlain(res.lambda_B_SI)} S·m²·mol⁻¹`);
-    lines.push(`• λ_H₃O⁺ = ${formatNumberPlain(res.lambda_H3O_SI)} S·m²·mol⁻¹`);
+    if (res.lambda_B_SI !== null) {
+      lines.push(`• λ_B = ${formatNumberPlain(res.lambda_B_SI)} S·m²·mol⁻¹`);
+      lines.push(`• λ_H₃O⁺ = ${formatNumberPlain(res.lambda_H3O_SI)} S·m²·mol⁻¹`);
+    }
     lines.push("");
     lines.push("ÉTAPES DE RÉSOLUTION :");
     let stepIdx = 1;

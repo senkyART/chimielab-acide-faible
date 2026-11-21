@@ -109,6 +109,34 @@
   font-style: italic;
 }
 
+/* Groupe optionnel pour la conductivité en Modes 1 et 3 */
+.conductivity-group {
+  grid-column: 1 / -1;
+  border-top: 1px dashed var(--border-card);
+  padding-top: 14px;
+  margin-top: 4px;
+}
+
+.conductivity-caption {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--teal);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.conductivity-fields {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 600px) {
+  .conductivity-fields {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 /* Champs de saisie (hauteur 44px pour faciliter le toucher sur smartphone) */
 .input-wrapper {
   height: 44px;

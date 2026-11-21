@@ -35,27 +35,33 @@ function renderFormInputs() {
         </div>
       </div>
 
-      <div class="input-group">
-        <div class="input-label-row">
-          <label for="inp-lambdaB">Conductivité molaire λ_B</label>
-          <span class="optional-tag">optionnel</span>
-        </div>
-        <div class="input-wrapper">
-          <input type="text" id="inp-lambdaB" class="input-field" placeholder="ex: 4.09 (pour σ)">
-          <select id="sel-lambda-unit" class="unit-select">
-            <option value="mS" ${state.lambdaUnit === 'mS' ? 'selected' : ''}>mS·m²·mol⁻¹</option>
-            <option value="S" ${state.lambdaUnit === 'S' ? 'selected' : ''}>S·m²·mol⁻¹</option>
-          </select>
-        </div>
-      </div>
+      <div class="conductivity-group">
+        <span class="conductivity-caption">Pour calculer σ (optionnel)</span>
+        <div class="conductivity-fields">
+          <div class="input-group">
+            <div class="input-label-row">
+              <label for="inp-lambdaB">Conductivité molaire λ_B</label>
+              <span class="optional-tag">optionnel</span>
+            </div>
+            <div class="input-wrapper">
+              <input type="text" id="inp-lambdaB" class="input-field" placeholder="ex: 4.09">
+              <select id="sel-lambda-unit" class="unit-select">
+                <option value="mS" ${state.lambdaUnit === 'mS' ? 'selected' : ''}>mS·m²·mol⁻¹</option>
+                <option value="S" ${state.lambdaUnit === 'S' ? 'selected' : ''}>S·m²·mol⁻¹</option>
+              </select>
+            </div>
+          </div>
 
-      <div class="input-group">
-        <div class="input-label-row">
-          <label for="inp-lambdaH3O">Conductivité molaire λ_H₃O⁺</label>
-        </div>
-        <div class="input-wrapper">
-          <input type="text" id="inp-lambdaH3O" class="input-field" value="${lambdaH3ODisplay}">
-          <span class="unit-badge" id="lbl-lambdaH3O-unit">${state.lambdaUnit === 'mS' ? 'mS·m²·mol⁻¹' : 'S·m²·mol⁻¹'}</span>
+          <div class="input-group">
+            <div class="input-label-row">
+              <label for="inp-lambdaH3O">Conductivité molaire λ_H₃O⁺</label>
+              <span class="optional-tag">optionnel</span>
+            </div>
+            <div class="input-wrapper">
+              <input type="text" id="inp-lambdaH3O" class="input-field" value="${lambdaH3ODisplay}">
+              <span class="unit-badge" id="lbl-lambdaH3O-unit">${state.lambdaUnit === 'mS' ? 'mS·m²·mol⁻¹' : 'S·m²·mol⁻¹'}</span>
+            </div>
+          </div>
         </div>
       </div>
     `;
@@ -130,7 +136,7 @@ function renderFormInputs() {
         </div>
       </div>
 
-      <div class="input-group">
+      <div class="input-group" style="grid-column: 1 / -1;">
         <div class="input-label-row">
           <label for="inp-n">Facteur de dilution n</label>
           <span class="optional-tag">optionnel (C' = C / n)</span>
@@ -140,27 +146,33 @@ function renderFormInputs() {
         </div>
       </div>
 
-      <div class="input-group">
-        <div class="input-label-row">
-          <label for="inp-lambdaB">Conductivité molaire λ_B</label>
-          <span class="optional-tag">optionnel (pour σ)</span>
-        </div>
-        <div class="input-wrapper">
-          <input type="text" id="inp-lambdaB" class="input-field" placeholder="ex: 4.09">
-          <select id="sel-lambda-unit" class="unit-select">
-            <option value="mS" ${state.lambdaUnit === 'mS' ? 'selected' : ''}>mS·m²·mol⁻¹</option>
-            <option value="S" ${state.lambdaUnit === 'S' ? 'selected' : ''}>S·m²·mol⁻¹</option>
-          </select>
-        </div>
-      </div>
+      <div class="conductivity-group">
+        <span class="conductivity-caption">Pour calculer σ (optionnel)</span>
+        <div class="conductivity-fields">
+          <div class="input-group">
+            <div class="input-label-row">
+              <label for="inp-lambdaB">Conductivité molaire λ_B</label>
+              <span class="optional-tag">optionnel</span>
+            </div>
+            <div class="input-wrapper">
+              <input type="text" id="inp-lambdaB" class="input-field" placeholder="ex: 4.09">
+              <select id="sel-lambda-unit" class="unit-select">
+                <option value="mS" ${state.lambdaUnit === 'mS' ? 'selected' : ''}>mS·m²·mol⁻¹</option>
+                <option value="S" ${state.lambdaUnit === 'S' ? 'selected' : ''}>S·m²·mol⁻¹</option>
+              </select>
+            </div>
+          </div>
 
-      <div class="input-group">
-        <div class="input-label-row">
-          <label for="inp-lambdaH3O">Conductivité molaire λ_H₃O⁺</label>
-        </div>
-        <div class="input-wrapper">
-          <input type="text" id="inp-lambdaH3O" class="input-field" value="${lambdaH3ODisplay}">
-          <span class="unit-badge" id="lbl-lambdaH3O-unit">${state.lambdaUnit === 'mS' ? 'mS·m²·mol⁻¹' : 'S·m²·mol⁻¹'}</span>
+          <div class="input-group">
+            <div class="input-label-row">
+              <label for="inp-lambdaH3O">Conductivité molaire λ_H₃O⁺</label>
+              <span class="optional-tag">optionnel</span>
+            </div>
+            <div class="input-wrapper">
+              <input type="text" id="inp-lambdaH3O" class="input-field" value="${lambdaH3ODisplay}">
+              <span class="unit-badge" id="lbl-lambdaH3O-unit">${state.lambdaUnit === 'mS' ? 'mS·m²·mol⁻¹' : 'S·m²·mol⁻¹'}</span>
+            </div>
+          </div>
         </div>
       </div>
     `;
@@ -265,23 +277,52 @@ function triggerCalculate() {
       throw new Error("La concentration C doit être un nombre strictement positif (> 0 mol/L).");
     }
 
-    const inpLambdaH3O = document.getElementById('inp-lambdaH3O');
-    const lambdaH3O_raw = inpLambdaH3O ? parseNumber(inpLambdaH3O.value) : NaN;
-    if (isNaN(lambdaH3O_raw) || lambdaH3O_raw <= 0) {
-      throw new Error("La conductivité molaire λ_H₃O⁺ doit être strictement positive (> 0).");
-    }
-    const lambda_H3O_SI = lambdaToSI(lambdaH3O_raw, state.lambdaUnit);
-
-    // λ_B (optionnel en modes 1 et 3, obligatoire en mode 2)
+    // Gestion de λ_B et λ_H₃O⁺ selon le mode
     const inpLambdaB = document.getElementById('inp-lambdaB');
+    const hasLambdaB = (inpLambdaB && inpLambdaB.value.trim() !== '');
+
     let lambda_B_SI = null;
-    if (inpLambdaB && inpLambdaB.value.trim() !== '') {
+    let lambda_H3O_SI = null;
+
+    if (state.mode === 2) {
+      // En Mode 2 : λ_B et λ_H₃O⁺ sont obligatoires tous les deux
+      if (!hasLambdaB) {
+        throw new Error("En Mode 2, la conductivité molaire λ_B est requise et doit être strictement positive.");
+      }
       const lB_raw = parseNumber(inpLambdaB.value);
-      // Fix F5 : si λ_B est saisi mais invalide ou ≤ 0, lever une erreur explicite
       if (isNaN(lB_raw) || lB_raw <= 0) {
-        throw new Error("La conductivité molaire λ_B saisie est invalide. Elle doit être strictement positive (> 0).");
+        throw new Error("La conductivité molaire λ_B doit être strictement positive (> 0).");
       }
       lambda_B_SI = lambdaToSI(lB_raw, state.lambdaUnit);
+
+      const inpLambdaH3O = document.getElementById('inp-lambdaH3O');
+      const lambdaH3O_raw = inpLambdaH3O ? parseNumber(inpLambdaH3O.value) : NaN;
+      if (isNaN(lambdaH3O_raw) || lambdaH3O_raw <= 0) {
+        throw new Error("La conductivité molaire λ_H₃O⁺ doit être strictement positive (> 0).");
+      }
+      lambda_H3O_SI = lambdaToSI(lambdaH3O_raw, state.lambdaUnit);
+
+    } else {
+      // En Modes 1 et 3 : λ_B et λ_H₃O⁺ sont optionnels pour le calcul de σ
+      // Si λ_B est vide : λ_H₃O⁺ est ignoré, σ n'est ni calculé ni affiché
+      // Si λ_B est renseigné et valide : λ_H₃O⁺ doit être valide
+      if (hasLambdaB) {
+        const lB_raw = parseNumber(inpLambdaB.value);
+        if (isNaN(lB_raw) || lB_raw <= 0) {
+          throw new Error("La conductivité molaire λ_B saisie est invalide. Elle doit être strictement positive (> 0).");
+        }
+        lambda_B_SI = lambdaToSI(lB_raw, state.lambdaUnit);
+
+        const inpLambdaH3O = document.getElementById('inp-lambdaH3O');
+        const lambdaH3O_raw = inpLambdaH3O ? parseNumber(inpLambdaH3O.value) : NaN;
+        if (isNaN(lambdaH3O_raw) || lambdaH3O_raw <= 0) {
+          throw new Error("La conductivité molaire λ_H₃O⁺ est requise pour calculer σ et doit être strictement positive (> 0).");
+        }
+        lambda_H3O_SI = lambdaToSI(lambdaH3O_raw, state.lambdaUnit);
+      } else {
+        lambda_B_SI = null;
+        lambda_H3O_SI = 0.035; // Valeur transmise à calcModeX (ignorée car lambda_B_SI === null)
+      }
     }
 
     let res = null;
@@ -308,10 +349,6 @@ function triggerCalculate() {
       }
       const sigma_SI = sigmaToSI(sigma_raw, state.sigmaUnit);
 
-      if (lambda_B_SI === null) {
-        throw new Error("En Mode 2, la conductivité molaire λ_B est requise et doit être strictement positive.");
-      }
-
       res = calcMode2({
         C: C_raw,
         sigma_SI,
@@ -330,7 +367,6 @@ function triggerCalculate() {
       let n_raw = null;
       if (inpN && inpN.value.trim() !== '') {
         n_raw = parseNumber(inpN.value);
-        // Fix F5 : si n est saisi mais invalide ou < 1, lever une erreur explicite
         if (isNaN(n_raw) || n_raw < 1) {
           throw new Error("Le facteur de dilution n doit être un nombre supérieur ou égal à 1 (n ≥ 1).");
         }
