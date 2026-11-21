@@ -1,4 +1,4 @@
-/* css/base.css — Reset, mise en page globale, arrière-plan et en-tête */
+/* css/base.css — Reset, mise en page épurée (colonne unique max 720px) et typographie */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,107 +8,30 @@
 body {
   background-color: var(--bg-base);
   color: var(--text-main);
-  font-family: var(--font-body);
+  font-family: var(--font-sans);
   min-height: 100vh;
-  overflow-x: hidden;
-  position: relative;
-  transition: background-color 0.2s ease, color 0.2s ease;
-  line-height: 1.6;
-}
-
-/* Gradient Blobs décoratifs en arrière-plan */
-.blob {
-  position: fixed;
-  border-radius: 50%;
-  filter: blur(90px);
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.35;
-  animation: floatSlow 22s infinite alternate ease-in-out;
-}
-
-.blob-1 {
-  width: 420px;
-  height: 420px;
-  top: -120px;
-  left: -120px;
-  background: radial-gradient(circle, #2DD4BF, transparent 70%);
-}
-
-.blob-2 {
-  width: 480px;
-  height: 480px;
-  bottom: -150px;
-  right: -150px;
-  background: radial-gradient(circle, #8B5CF6, transparent 70%);
-  animation-delay: -8s;
-}
-
-@keyframes floatSlow {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(40px, 30px) scale(1.08); }
-  100% { transform: translate(-30px, 50px) scale(0.95); }
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
 .container {
-  max-width: 1080px;
+  max-width: 720px;
   margin: 0 auto;
-  padding: 28px 20px 80px 20px;
-  position: relative;
-  z-index: 1;
+  padding: 32px 16px 48px 16px;
 }
 
-/* En-tête */
+/* En-tête simplifié */
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-bottom: 32px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border-card);
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.droplet-icon {
-  width: 44px;
-  height: 44px;
-  background: var(--accent-gradient);
-  border-radius: 50% 50% 50% 10%;
-  transform: rotate(-45deg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--accent-glow);
-  animation: pulseDrop 4s infinite ease-in-out;
-}
-
-.droplet-icon svg {
-  transform: rotate(45deg);
-  fill: #FFFFFF;
-  width: 22px;
-  height: 22px;
-}
-
-@keyframes pulseDrop {
-  0%, 100% { transform: rotate(-45deg) scale(1); }
-  50% { transform: rotate(-45deg) scale(1.06); }
+  text-align: center;
+  margin-bottom: 24px;
 }
 
 .brand-title h1 {
-  font-family: var(--font-title);
-  font-size: 1.55rem;
+  font-size: 1.5rem;
   font-weight: 700;
+  color: var(--text-main);
   letter-spacing: -0.02em;
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  margin-bottom: 4px;
 }
 
 .brand-title p {
@@ -116,8 +39,25 @@ header {
   color: var(--text-muted);
 }
 
-.header-actions {
-  display: flex;
-  gap: 10px;
-  align-items: center;
+/* Pied de page discret */
+.site-footer {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-card);
+}
+
+.footer-link {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 4px 8px;
+  transition: color 0.15s ease;
+}
+
+.footer-link:hover {
+  color: var(--teal);
 }

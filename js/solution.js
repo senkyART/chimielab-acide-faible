@@ -8,18 +8,19 @@
 function displayResults(res) {
   const grid = document.getElementById('results-grid');
   const stepsContainer = document.getElementById('solution-steps-list');
-  const tauBar = document.getElementById('tau-gauge-bar');
-  const tauText = document.getElementById('tau-gauge-percent');
 
-  if (!grid || !stepsContainer || !tauBar || !tauText) return;
+  if (!grid || !stepsContainer) return;
 
   grid.innerHTML = '';
   stepsContainer.innerHTML = '';
 
-  // Mise à jour de la jauge τ
-  const tauPercent = Math.min(Math.max(res.tau * 100, 0), 100);
-  tauBar.style.width = `${tauPercent}%`;
-  tauText.textContent = `${(res.tau * 100).toFixed(2).replace('.', ',')} %`;
+  const tauBar = document.getElementById('tau-gauge-bar');
+  const tauText = document.getElementById('tau-gauge-percent');
+  if (tauBar && tauText) {
+    const tauPercent = Math.min(Math.max(res.tau * 100, 0), 100);
+    tauBar.style.width = `${tauPercent}%`;
+    tauText.textContent = `${(res.tau * 100).toFixed(2).replace('.', ',')} %`;
+  }
 
   if (res.mode === 1) {
     // Mode 1 : [H₃O⁺] → τ → K (→ σ)

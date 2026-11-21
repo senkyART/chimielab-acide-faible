@@ -1,4 +1,4 @@
-/* js/form.js — Gestion du formulaire de saisie, écouteurs d'événements et calcul en direct */
+/* js/form.js — Gestion du formulaire de saisie, écouteurs d'événements et calcul */
 
 /**
  * Génère et insère les champs de saisie correspondant au mode actif.
@@ -6,7 +6,7 @@
 function renderFormInputs() {
   const container = document.getElementById('inputs-container');
   const title = document.getElementById('form-title');
-  if (!container || !title) return;
+  if (!container) return;
 
   container.innerHTML = '';
 
@@ -14,7 +14,7 @@ function renderFormInputs() {
   const lambdaH3ODisplay = (state.lambdaUnit === 'mS') ? "35.0" : "0.035";
 
   if (state.mode === 1) {
-    title.textContent = "Paramètres de l'exercice — Mode 1 (C et pH)";
+    if (title) title.textContent = "Paramètres — Mode 1 (C et pH)";
     container.innerHTML = `
       <div class="input-group">
         <div class="input-label-row">
@@ -60,7 +60,7 @@ function renderFormInputs() {
       </div>
     `;
   } else if (state.mode === 2) {
-    title.textContent = "Paramètres de l'exercice — Mode 2 (C et Conductimétrie)";
+    if (title) title.textContent = "Paramètres — Mode 2 (C et σ)";
     container.innerHTML = `
       <div class="input-group">
         <div class="input-label-row">
@@ -109,7 +109,7 @@ function renderFormInputs() {
       </div>
     `;
   } else if (state.mode === 3) {
-    title.textContent = "Paramètres de l'exercice — Mode 3 (C et K)";
+    if (title) title.textContent = "Paramètres — Mode 3 (C et K)";
     container.innerHTML = `
       <div class="input-group">
         <div class="input-label-row">
@@ -214,8 +214,6 @@ function attachInputListeners() {
           inpLambdaB.value = convB.toString().replace('.', ',');
         }
       }
-
-      triggerCalculate(true, false);
     });
   }
 
@@ -237,31 +235,25 @@ function attachInputListeners() {
           inpSigma.value = convS.toString().replace('.', ',');
         }
       }
-
-      triggerCalculate(true, false);
     });
   }
 
-  // Écoute des saisies pour calcul en direct et touche Entrée
+  // Écoute de la touche Entrée sur les champs pour déclencher le calcul (aucun calcul en direct)
   const inputs = document.querySelectorAll('.input-field');
   inputs.forEach(input => {
-    input.addEventListener('input', () => triggerCalculate(true, false));
     input.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         e.preventDefault();
-        triggerCalculate(false, true);
+        triggerCalculate();
       }
     });
   });
 }
 
 /**
- * Déclenche le calcul, la validation stricte et la mise à jour de l'affichage.
- *
- * @param {boolean} [isLive=false] - Indique s'il s'agit d'une frappe en cours.
- * @param {boolean} [recordHistory=true] - Indique si le calcul doit être enregistré dans l'historique.
+ * Déclenche le calcul, la validation stricte et l'affichage des résultats ou de l'erreur.
  */
-function triggerCalculate(isLive = false, recordHistory = true) {
+function triggerCalculate() {
   const errBox = document.getElementById('error-box');
   const resSection = document.getElementById('results-section');
   if (!errBox || !resSection) return;
@@ -353,7 +345,7 @@ function triggerCalculate(isLive = false, recordHistory = true) {
       });
     }
 
-    // Succès : mise à jour de l'affichage
+    // Succès : masquage de l'erreur et affichage des résultats
     state.lastResult = res;
     errBox.style.display = 'none';
     errBox.textContent = '';
@@ -361,12 +353,8 @@ function triggerCalculate(isLive = false, recordHistory = true) {
 
     displayResults(res);
 
-    if (recordHistory && !isLive) {
-      addToHistory(res);
-    }
-
   } catch (err) {
-    // Fix F7 : en cas d'erreur (même en direct), cacher les résultats obsolètes et afficher l'erreur
+    // Erreur : masquage des résultats et affichage sous le bouton Calculer
     state.lastResult = null;
     resSection.style.display = 'none';
     errBox.textContent = err.message || "Erreur lors du calcul.";
@@ -382,12 +370,25 @@ function triggerCalculate(isLive = false, recordHistory = true) {
 function selectMode(m) {
   state.mode = m;
   document.querySelectorAll('.mode-card').forEach(c => {
-    if (parseInt(c.getAttribute('data-mode'), 10) === m) {
+    const isCurrent = parseInt(c.getAttribute('data-mode'), 10) === m;
+    if (isCurrent) {
       c.classList.add('active');
+      c.setAttribute('aria-selected', 'true');
     } else {
       c.classList.remove('active');
+      c.setAttribute('aria-selected', 'false');
     }
   });
+
+  // Réinitialisation de l'affichage des résultats et erreurs lors du changement de mode
+  state.lastResult = null;
+  const resSection = document.getElementById('results-section');
+  if (resSection) resSection.style.display = 'none';
+  const errBox = document.getElementById('error-box');
+  if (errBox) {
+    errBox.style.display = 'none';
+    errBox.textContent = '';
+  }
+
   renderFormInputs();
-  triggerCalculate(true, false);
 }

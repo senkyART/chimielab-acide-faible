@@ -1,7 +1,7 @@
 /* js/main.js — Initialisation de l'application, écouteurs globaux et délégation d'événements */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Sélection des cartes de mode via clic et clavier
+  // Sélection des boutons de mode via clic et clavier
   document.querySelectorAll('.mode-card').forEach(card => {
     card.addEventListener('click', () => {
       const m = parseInt(card.getAttribute('data-mode'), 10);
@@ -21,27 +21,34 @@ document.addEventListener('DOMContentLoaded', () => {
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      triggerCalculate(false, true);
+      triggerCalculate();
     });
   }
 
-  // Bouton Calculer
+  // Grand bouton Calculer
   const btnCalc = document.getElementById('btn-calc');
   if (btnCalc) {
-    btnCalc.addEventListener('click', () => triggerCalculate(false, true));
+    btnCalc.addEventListener('click', () => triggerCalculate());
   }
 
   // Bouton Réinitialiser
   const btnReset = document.getElementById('btn-reset');
   if (btnReset) {
     btnReset.addEventListener('click', () => {
+      state.lastResult = null;
+      const resSection = document.getElementById('results-section');
+      if (resSection) resSection.style.display = 'none';
+      const errBox = document.getElementById('error-box');
+      if (errBox) {
+        errBox.style.display = 'none';
+        errBox.textContent = '';
+      }
       renderFormInputs();
-      triggerCalculate(true, false);
       showToast("Champs réinitialisés.");
     });
   }
 
-  // Bouton Copier la solution
+  // Bouton Copier la solution (situé sous la rédaction pas à pas)
   const btnCopySolution = document.getElementById('btn-copy-solution');
   if (btnCopySolution) {
     btnCopySolution.addEventListener('click', () => {
@@ -60,30 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (copyBtn && copyBtn.dataset.copy) {
         copyText(copyBtn.dataset.copy, "Valeur copiée dans le presse-papiers !");
       }
-    });
-  }
-
-  // Délégation d'événements pour le rechargement de l'historique (Fix F3)
-  const historyList = document.getElementById('history-list');
-  if (historyList) {
-    historyList.addEventListener('click', (e) => {
-      const restoreBtn = e.target.closest('.history-restore-btn');
-      if (restoreBtn && restoreBtn.dataset.historyIndex !== undefined) {
-        const idx = parseInt(restoreBtn.dataset.historyIndex, 10);
-        restoreHistoryItem(idx);
-      }
-    });
-  }
-
-  // Bascule du Thème (Sombre / Clair)
-  const themeBtn = document.getElementById('btn-theme-toggle');
-  const themeIcon = document.getElementById('theme-icon');
-  if (themeBtn && themeIcon) {
-    themeBtn.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', nextTheme);
-      themeIcon.textContent = nextTheme === 'dark' ? '☀️' : '🌙';
     });
   }
 
@@ -113,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Rendu initial
+  // Rendu initial (aucun calcul automatique avant clic sur Calculer)
   renderFormInputs();
-  triggerCalculate(true, false);
 });
