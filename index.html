@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!-- index.html — Structure sémantique de l'application ChimieLab (Acide Faible dans l'Eau) -->
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChimieLab — Résolution Acide Faible dans l'Eau</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <div class="container">
+    <!-- En-tête -->
+    <header>
+      <div class="brand">
+        <div class="droplet-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </div>
+        <div class="brand-title">
+          <h1>ChimieLab — Acide Faible</h1>
+          <p>Résolution rigoureuse &amp; conforme aux programmes de chimie</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button type="button" class="btn btn-glass" id="btn-open-tester" title="Lancer la suite de tests automatisée">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          Tester
+        </button>
+        <button type="button" class="btn btn-glass btn-sm" id="btn-theme-toggle" aria-label="Basculer thème sombre/clair" title="Changer le thème">
+          <span id="theme-icon">☀️</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Sélecteur de Mode -->
+    <div class="modes-grid" role="tablist">
+      <div class="mode-card active" id="card-mode-1" role="tab" tabindex="0" data-mode="1">
+        <div>
+          <span class="mode-badge">Situation 1</span>
+          <h3>Mode 1 : C et pH</h3>
+          <p>Données expérimentales usuelles d'un pH-mètre pour déterminer l'équilibre.</p>
+        </div>
+        <div class="mode-math-summary">
+          Données : C, pH (λ_B opt.)<br>
+          Calculs : [H₃O⁺] → τ → K (→ σ)
+        </div>
+      </div>
+
+      <div class="mode-card" id="card-mode-2" role="tab" tabindex="0" data-mode="2">
+        <div>
+          <span class="mode-badge">Situation 2</span>
+          <h3>Mode 2 : C et Conductimétrie</h3>
+          <p>Utilisation de la loi de Kohlrausch à partir de la mesure de conductivité σ.</p>
+        </div>
+        <div class="mode-math-summary">
+          Données : C, σ, λ_B, λ_H₃O⁺<br>
+          Calculs : [H₃O⁺] → τ → K exclusivement
+        </div>
+      </div>
+
+      <div class="mode-card" id="card-mode-3" role="tab" tabindex="0" data-mode="3">
+        <div>
+          <span class="mode-badge">Situation 3</span>
+          <h3>Mode 3 : C et K (± Dilution)</h3>
+          <p>Prévision théorique de l'état d'équilibre par l'équation du second degré.</p>
+        </div>
+        <div class="mode-math-summary">
+          Données : C, K (n, λ_B opt.)<br>
+          Calculs : C' → [H₃O⁺] → pH (→ σ) → τ
+        </div>
+      </div>
+    </div>
+
+    <!-- Message d'erreur -->
+    <div class="error-box" id="error-box"></div>
+
+    <!-- Panneau de Saisie des Paramètres -->
+    <section class="glass-panel">
+      <div class="form-section-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        <span id="form-title">Paramètres de l'exercice — Mode 1</span>
+      </div>
+
+      <form id="calc-form">
+        <div class="inputs-grid" id="inputs-container">
+          <!-- Champs injectés dynamiquement par form.js -->
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-primary" id="btn-calc">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            Calculer
+          </button>
+          <button type="button" class="btn btn-glass" id="btn-reset">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+            Réinitialiser
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Zone de Résultats -->
+    <section id="results-section" style="display: none;">
+      <div class="results-header">
+        <h2 style="font-family: var(--font-title); font-size: 1.25rem;">Grandeurs Calculées</h2>
+        <button type="button" class="btn btn-glass btn-sm" id="btn-copy-solution">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copier la solution
+        </button>
+      </div>
+
+      <!-- Cartes synthétiques dans l'ordre strict du mode -->
+      <div class="results-grid" id="results-grid"></div>
+
+      <!-- Jauge τ -->
+      <div class="tau-gauge-card" id="tau-gauge-wrapper">
+        <div class="tau-gauge-header">
+          <span class="tau-gauge-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Taux d'avancement final (τ)
+          </span>
+          <span class="tau-gauge-value" id="tau-gauge-percent">0,00 %</span>
+        </div>
+        <div class="tau-track">
+          <div class="tau-fill" id="tau-gauge-bar"></div>
+        </div>
+        <div class="tau-scale">
+          <span>0 % (Non dissocié)</span>
+          <span>50 %</span>
+          <span>100 % (Totalement dissocié)</span>
+        </div>
+      </div>
+
+      <!-- Rédaction Pas à Pas Détaillée (Style Examen) -->
+      <div class="solution-block">
+        <h3 style="font-family: var(--font-title); font-size: 1.15rem; margin-bottom: 16px; border-bottom: 1px solid var(--border-card); padding-bottom: 8px;">
+          Rédaction Pas à Pas Conforme à l'Examen
+        </h3>
+        <div id="solution-steps-list"></div>
+      </div>
+    </section>
+
+    <!-- Historique des 5 derniers calculs (en mémoire) -->
+    <div class="glass-panel history-card" id="history-section" style="display: none;">
+      <h3 style="font-family: var(--font-title); font-size: 1rem; margin-bottom: 10px; color: var(--text-muted);">
+        Historique Récent (5 derniers calculs en mémoire)
+      </h3>
+      <div class="history-list" id="history-list"></div>
+    </div>
+  </div>
+
+  <!-- Modal du Testeur Automatisé -->
+  <div class="modal-overlay" id="tester-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2 style="font-family: var(--font-title); font-size: 1.25rem;">Suite de Tests Automatisée</h2>
+        <button type="button" class="btn btn-glass btn-sm" id="btn-close-tester">Fermer</button>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">
+        Vérification numérique stricte des formules, du parsing et des règles d'unités (Tolérance relative : 0,5 %, pH : 0,01).
+      </p>
+      <div id="tester-summary" style="font-weight: 600; font-size: 0.95rem; margin-bottom: 14px;"></div>
+      <table class="test-table">
+        <thead>
+          <tr>
+            <th>Test</th>
+            <th>Attendu</th>
+            <th>Obtenu</th>
+            <th>Statut</th>
+          </tr>
+        </thead>
+        <tbody id="test-results-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div class="toast" id="toast">Copié dans le presse-papiers !</div>
+
+  <!-- Scripts JavaScript chargés dans l'ordre strict prescrit -->
+  <script src="js/parser.js"></script>
+  <script src="js/format.js"></script>
+  <script src="js/units.js"></script>
+  <script src="js/calc.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/clipboard.js"></script>
+  <script src="js/history.js"></script>
+  <script src="js/solution.js"></script>
+  <script src="js/form.js"></script>
+  <script src="js/tester.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
