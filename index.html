@@ -1,30 +1,40 @@
 <!DOCTYPE html>
-<!-- index.html — ChimieLab : Instrument Scientifique de Résolution d'Acide Faible dans l'Eau -->
+<!-- index.html — ChimieLab : ATOMIC ATELIER (Résolution d'Acide Faible dans l'Eau) -->
 <html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ChimieLab — Résolution Acide Faible dans l'Eau</title>
+  <title>ChimieLab — ATOMIC ATELIER · Acide Faible dans l'Eau</title>
   
-  <!-- Polices Google Fonts d'exception : Instrument Serif + Manrope + JetBrains Mono -->
+  <!-- Typographie d'exception : Instrument Serif + Syne + Manrope + JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@500;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Feuilles de style ChimieLab -->
+  <!-- Feuilles de style de haute précision -->
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
   <div class="container">
+
+    <!-- BARRE TECHNIQUE DE TÉLÉMÉTRIE SUPÉRIEURE -->
+    <div class="top-telemetry-bar">
+      <div class="telemetry-tag">
+        <span class="telemetry-dot"></span>
+        <span>ATELIER ATOMIQUE · CHIMIELAB V2.5</span>
+      </div>
+      <div>BRØNSTED-LOWRY AQUEOUS EQUILIBRIUM</div>
+      <div>PRÉCISION THERMODYNAMIQUE : 10⁻⁴</div>
+    </div>
     
     <!-- EN-TÊTE ET IDENTITÉ DE MARQUE -->
     <header class="site-header">
       <div class="brand-block">
         <div class="brand-emblem" aria-hidden="true">
-          <!-- Icône de gouttelette / fiole stylisée en or champagne -->
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Gouttelette stylisée dans son orbite atomique -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
           </svg>
         </div>
@@ -43,12 +53,12 @@
         </button>
 
         <!-- Bouton Testeur -->
-        <button type="button" class="header-btn" id="btn-open-tester" title="Lancer la suite de tests automatisée">
+        <button type="button" class="header-btn" id="btn-open-tester" title="Lancer la suite de vérifications scientifiques">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2v7.31L4.69 17.5A2 2 0 0 0 6.42 20h11.16a2 2 0 0 0 1.73-2.5L14 9.31V2"/><line x1="8.5" y1="2" x2="15.5" y2="2"/></svg>
           <span>Tester</span>
         </button>
 
-        <!-- Basculeur Thème (Dark Chocolate & Champagne / Light) -->
+        <!-- Basculeur Thème (Dark Chocolate & Champagne / Light Atelier) -->
         <button type="button" class="header-btn theme-toggle-btn" id="btn-theme-toggle" aria-label="Changer de thème">
           <span id="theme-icon">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
@@ -57,70 +67,92 @@
       </div>
     </header>
 
-    <!-- SECTION I : SÉLECTION DU MODE -->
+    <!-- HERO SECTION AVANT-GARDE : ATOMIC ATELIER -->
+    <section class="hero-atelier">
+      <div class="hero-content">
+        <div class="hero-meta-label">
+          <span>[ ATELIER CHIMIQUE · EXPÉRIMENTATION 01 ]</span>
+        </div>
+        <h2 class="hero-title">L'Art de l'Équilibre <em>Aqueux</em></h2>
+        <p class="hero-desc">
+          Résolution thermodynamique exacte des équilibres d'acide faible dans l'eau. pH-métrie, conductimétrie ionique et loi d'action de masse rédigées avec une rigueur de haute couture.
+        </p>
+      </div>
+      <div class="hero-canvas-wrapper">
+        <canvas id="atomic-canvas"></canvas>
+        <span class="canvas-overlay-label">SIMULATION IONIQUE · ÉQUILIBRE HA / A⁻ / H₃O⁺</span>
+      </div>
+    </section>
+
+    <!-- SECTION 01 : SÉLECTION DU MODE -->
     <section>
       <div class="section-header-block">
-        <span class="section-num-badge">I</span>
+        <span class="section-num-badge">01</span>
         <div class="section-header-text">
-          <h2>Quelle est la situation de l'exercice ?</h2>
-          <p>Choisissez ce que l'énoncé vous donne.</p>
+          <h2>Situation de l'Exercice</h2>
+          <p>Identifiez la méthode expérimentale décrite dans votre énoncé.</p>
         </div>
       </div>
 
       <div class="modes-grid" role="tablist">
         <button type="button" class="mode-card active" id="card-mode-1" role="tab" aria-selected="true" data-mode="1">
           <div class="mode-card-header">
-            <span class="mode-tag">MODE 01</span>
+            <span class="mode-numeral">01</span>
             <span class="mode-indicator">
               <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.8 7L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </span>
           </div>
           <div>
             <span class="mode-title">C et pH</span>
-            <span class="mode-subtitle">Mesure au pH-mètre</span>
+            <span class="mode-subtitle">Mesure potentiométrique au pH-mètre</span>
           </div>
         </button>
 
         <button type="button" class="mode-card" id="card-mode-2" role="tab" aria-selected="false" data-mode="2">
           <div class="mode-card-header">
-            <span class="mode-tag">MODE 02</span>
+            <span class="mode-numeral">02</span>
             <span class="mode-indicator"></span>
           </div>
           <div>
             <span class="mode-title">C et σ</span>
-            <span class="mode-subtitle">Conductimétrie</span>
+            <span class="mode-subtitle">Conductimétrie ionique de solution</span>
           </div>
         </button>
 
         <button type="button" class="mode-card" id="card-mode-3" role="tab" aria-selected="false" data-mode="3">
           <div class="mode-card-header">
-            <span class="mode-tag">MODE 03</span>
+            <span class="mode-numeral">03</span>
             <span class="mode-indicator"></span>
           </div>
           <div>
             <span class="mode-title">C et K</span>
-            <span class="mode-subtitle">± dilution</span>
+            <span class="mode-subtitle">Constante thermodynamique ± dilution</span>
           </div>
         </button>
       </div>
 
-      <!-- BANNIÈRE CONTEXTUELLE DE SITUATION (SECTION B) -->
+      <!-- BANNIÈRE CONTEXTUELLE DE TÉLÉMÉTRIE -->
       <div class="mode-context-banner" id="mode-context-banner">
         <!-- Rempli dynamiquement par form.js -->
       </div>
     </section>
 
-    <!-- SECTION II : ESPACE DE SAISIE DES DONNÉES -->
+    <!-- SECTION 02 : CONSOLE DE SAISIE INSTRUMENTALE -->
     <section>
       <div class="section-header-block">
-        <span class="section-num-badge">II</span>
+        <span class="section-num-badge">02</span>
         <div class="section-header-text">
-          <h2>Saisissez les données</h2>
-          <p>Point ou virgule acceptés · notation scientifique (ex: 1.0e-2 ou 10^-2) supportée.</p>
+          <h2>Console de Saisie des Paramètres</h2>
+          <p>Notation décimale (virgule ou point) et scientifique (ex: 1.0e-2 ou 10^-2) acceptées.</p>
         </div>
       </div>
 
       <div class="glass-panel">
+        <div class="form-section-title">
+          <span id="form-title">Paramètres de l'exercice — Mode 1</span>
+          <span>CALIBRAGE INSTRUMENTAL</span>
+        </div>
+
         <form id="calc-form">
           <div class="inputs-grid" id="inputs-container">
             <!-- Champs injectés dynamiquement par form.js -->
@@ -129,38 +161,38 @@
           <div class="form-actions">
             <button type="submit" class="btn-primary" id="btn-calc">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-              <span>Calculer la solution</span>
+              <span>Résoudre l'Équilibre Chimique</span>
             </button>
-            <button type="button" class="btn-link" id="btn-reset">Réinitialiser les paramètres</button>
+            <button type="button" class="btn-link" id="btn-reset">Réinitialiser les paramètres par défaut</button>
           </div>
         </form>
 
-        <!-- Message d'erreur (affiché sous le bouton en cas de saisie invalide) -->
+        <!-- Message d'erreur explicite en cas de saisie invalide -->
         <div class="error-box" id="error-box"></div>
       </div>
     </section>
 
-    <!-- SECTION III : RÉSULTATS ET RÉDACTION PAS À PAS -->
+    <!-- SECTION 03 : TÉLÉMÉTRIE D'ÉQUILIBRE ET RÉDACTION -->
     <section id="results-section" style="display: none;">
       <div class="results-header-row">
         <div class="section-header-block" style="margin-bottom: 0;">
-          <span class="section-num-badge">III</span>
+          <span class="section-num-badge">03</span>
           <div class="section-header-text">
-            <h2>Résultats de l'Équilibre</h2>
-            <p>Grandeurs thermodynamiques déterminées à l'équilibre chimique.</p>
+            <h2>Bilan Thermodynamique à l'Équilibre</h2>
+            <p>Grandeurs d'état calculées à l'équilibre chimique.</p>
           </div>
         </div>
-        <span class="results-status-badge" id="results-status-badge">✓ Équilibre thermodynamique validé</span>
+        <span class="results-status-badge" id="results-status-badge">✓ Équilibre validé</span>
       </div>
 
-      <!-- Grille des cartes de résultat -->
+      <!-- Grille spectaculaire des cartes de résultat -->
       <div class="results-grid" id="results-grid"></div>
 
-      <!-- Bloc de rédaction pas à pas de type examen -->
+      <!-- Monographie académique pas à pas -->
       <div class="solution-block">
         <div class="solution-header-row">
           <div class="solution-title-group">
-            <h3>Rédaction Pas à Pas — Type Examen</h3>
+            <h3>Rédaction Pas à Pas — Conforme aux Examens</h3>
             <p>Structure rigoureuse : Formule littérale → Application numérique → Calcul intermédiaire → Résultat</p>
           </div>
 
@@ -185,43 +217,43 @@
       <div class="history-header">
         <h3>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          Historique des Calculs Récents (5 derniers)
+          Historique des 5 Dernières Expériences
         </h3>
       </div>
-      <p class="history-empty-text" id="history-empty">Aucun calcul enregistré dans cette session.</p>
+      <p class="history-empty-text" id="history-empty">Aucune expérience enregistrée dans cette session.</p>
       <div class="history-list" id="history-list"></div>
     </section>
 
-    <!-- PIED DE PAGE SCIENTIFIQUE -->
+    <!-- PIED DE PAGE ATELIER -->
     <footer class="site-footer">
       <div class="footer-brand">
-        ChimieLab — Instrument de Haute Précision pour Acide Faible
+        ChimieLab — ATOMIC ATELIER · Instrument Scientifique de Haute Couture
       </div>
       <div class="footer-links">
-        <button type="button" class="footer-link" id="btn-footer-tester">Lancer le Testeur</button>
-        <span>Auteur : Senky</span>
+        <button type="button" class="footer-link" id="btn-footer-tester">Audit & Tests</button>
+        <span>Direction Créative & Conception : Senky</span>
       </div>
     </footer>
 
   </div>
 
-  <!-- MODALE DU TESTEUR AUTOMATISÉ (ASSERTIONS SCIENTIFIQUES RÉELLES) -->
+  <!-- MODALE DU TESTEUR AUTOMATISÉ -->
   <div class="modal-overlay" id="tester-modal">
     <div class="modal-box">
       <div class="modal-header">
-        <h2>Suite de Tests Automatisée</h2>
+        <h2>Audit Scientifique Automatisé</h2>
         <button type="button" class="btn-close" id="btn-close-tester">Fermer</button>
       </div>
-      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">
-        Vérifications numériques réelles sur le moteur de calcul (tolérance relative 0,5 %, pH : 0,01).
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px;">
+        Contrôle d'intégrité numérique du moteur thermodynamique (tolérance relative 0,5 %, pH : 0,01).
       </p>
-      <div id="tester-summary" style="font-weight: 600; font-size: 0.9rem; margin-bottom: 14px;"></div>
+      <div id="tester-summary" style="font-weight: 700; font-size: 0.92rem; margin-bottom: 16px;"></div>
       <table class="test-table">
         <thead>
           <tr>
-            <th>Vérification</th>
-            <th>Attendu</th>
-            <th>Obtenu</th>
+            <th>Épreuve</th>
+            <th>Valeur Attendue</th>
+            <th>Valeur Obtenue</th>
             <th>Statut</th>
           </tr>
         </thead>
@@ -234,6 +266,7 @@
   <div class="toast" id="toast">Copié dans le presse-papiers !</div>
 
   <!-- SCRIPTS JAVASCRIPT (CHARGÉS DANS L'ORDRE STRICT) -->
+  <script src="js/canvas.js"></script>
   <script src="js/parser.js"></script>
   <script src="js/format.js"></script>
   <script src="js/units.js"></script>

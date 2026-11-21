@@ -19,18 +19,25 @@ function displayResults(res) {
     statusBadge.innerHTML = `✓ Équilibre validé · K = ${formatNumber(res.K)}`;
   }
 
-  // Jauge de dissociation pour τ
+  // Jauge de réaction chimique : Acide Réagi (τ) vs Acide Intact (1 - τ)
   const tauPercent = Math.min(Math.max(res.tau * 100, 0), 100);
+  const unreactedPercent = (100 - tauPercent).toFixed(2).replace('.', ',');
   const tauGaugeHtml = `
-    <div class="tau-gauge-track" title="Taux de réaction : ${tauPercent.toFixed(2)}%">
-      <div class="tau-gauge-bar" style="width: ${tauPercent}%"></div>
+    <div style="margin-top: 10px;">
+      <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); margin-bottom: 4px;">
+        <span>Dissocié : ${tauPercent.toFixed(2).replace('.', ',')}%</span>
+        <span>Intact : ${unreactedPercent}%</span>
+      </div>
+      <div class="tau-gauge-track">
+        <div class="tau-gauge-bar" style="width: ${tauPercent}%"></div>
+      </div>
     </div>
   `;
 
   if (res.mode === 1) {
     // Mode 1 : [H₃O⁺] (Héro) → τ → K (→ σ)
-    appendResultCard(grid, '[H₃O⁺]', 'Ions oxonium', 'x = 10^(−pH)', formatNumber(res.x), 'mol/L', true);
-    appendResultCard(grid, 'τ', 'Taux final', 'τ = x / C', formatNumber(res.tau, 'tau'), '', false, tauGaugeHtml);
+    appendResultCard(grid, '[H₃O⁺]', 'Ion Oxonium', 'x = 10^(−pH)', formatNumber(res.x), 'mol/L', true);
+    appendResultCard(grid, 'τ', 'Taux de réaction', 'τ = x / C', formatNumber(res.tau, 'tau'), '', false, tauGaugeHtml);
     appendResultCard(grid, 'K', "Constante d'acidité", 'K = x² / (C − x)', formatNumber(res.K), '', false);
     if (res.sigma !== null) {
       appendResultCard(grid, 'σ', 'Conductivité', 'σ = x · (λ_B + λ_H₃O⁺) · 10³', formatNumber(res.sigma), 'S/m', false);
@@ -43,10 +50,10 @@ function displayResults(res) {
           <span class="step-title">Conditions initiales du système chimique</span>
         </div>
         <div class="step-content">
-          <div class="step-sub">• Concentration initiale en acide : C = ${formatNumber(res.C)} mol/L</div>
-          <div class="step-sub">• pH mesuré de la solution : pH = ${formatNumber(res.pH, 'pH')}</div>
+          <div class="step-sub">• Concentration initiale en acide faible : C = ${formatNumber(res.C)} mol/L</div>
+          <div class="step-sub">• pH mesuré à l'équilibre : pH = ${formatNumber(res.pH, 'pH')}</div>
           ${res.lambda_B_SI !== null ? `
-          <div class="step-sub">• Conductivité molaire ionique de la base : λ_B = ${formatNumber(res.lambda_B_SI)} S·m²·mol⁻¹</div>
+          <div class="step-sub">• Conductivité molaire ionique de la base conjuguée : λ_B = ${formatNumber(res.lambda_B_SI)} S·m²·mol⁻¹</div>
           <div class="step-sub">• Conductivité molaire ionique de H₃O⁺ : λ_H₃O⁺ = ${formatNumber(res.lambda_H3O_SI)} S·m²·mol⁻¹</div>
           ` : ''}
         </div>
@@ -72,20 +79,20 @@ function displayResults(res) {
         <div class="step-content">
           <div class="step-formula">τ = x / C</div>
           <div class="step-sub"><strong>Application numérique :</strong> τ = (${formatNumber(res.x)}) / (${formatNumber(res.C)})</div>
-          <div class="step-res">⇒ τ = ${formatNumber(res.tau, 'tau')} (soit ${(res.tau * 100).toFixed(2).replace('.', ',')} % d'acide dissocié)</div>
+          <div class="step-res">⇒ τ = ${formatNumber(res.tau, 'tau')} (soit ${(res.tau * 100).toFixed(2).replace('.', ',')} % de l'acide réagi)</div>
         </div>
       </div>
 
       <div class="solution-step">
         <div class="step-badge-row">
           <span class="step-badge">Étape 03</span>
-          <span class="step-title">Constante d'acidité de l'équilibre K</span>
+          <span class="step-title">Constante d'acidité K de la réaction</span>
         </div>
         <div class="step-content">
           <div class="step-formula">K = x² / (C − x)</div>
           <div class="step-sub"><strong>Application numérique :</strong> K = (${formatNumber(res.x)})² / (${formatNumber(res.C)} − ${formatNumber(res.x)})</div>
           <div class="step-sub"><strong>Calcul intermédiaire :</strong> (${formatNumber(res.x * res.x)}) / (${formatNumber(res.C - res.x)})</div>
-          <div class="step-res">⇒ K = ${formatNumber(res.K)} (grandeur sans dimension)</div>
+          <div class="step-res">⇒ K = ${formatNumber(res.K)} (grandeur thermodynamique sans dimension)</div>
         </div>
       </div>
 
@@ -97,7 +104,7 @@ function displayResults(res) {
         </div>
         <div class="step-content">
           <div class="step-formula">σ = x · (λ_B + λ_H₃O⁺) · 10³</div>
-          <div class="step-sub">Facteur 10³ : conversion de mol/L en mol/m³ (SI).</div>
+          <div class="step-sub">Unités : x en mol/L (facteur 10³ pour la conversion en mol/m³), λ en S·m²·mol⁻¹</div>
           <div class="step-sub"><strong>Application numérique :</strong> σ = ${formatNumber(res.x)} · (${formatNumber(res.lambda_B_SI)} + ${formatNumber(res.lambda_H3O_SI)}) · 10³</div>
           <div class="step-sub"><strong>Calcul intermédiaire :</strong> ${formatNumber(res.x)} · ${formatNumber(res.lambda_B_SI + res.lambda_H3O_SI)} · 1000</div>
           <div class="step-res">⇒ σ = ${formatNumber(res.sigma)} S/m (soit ${formatNumber(res.sigma * 1000)} mS/m)</div>
@@ -119,8 +126,8 @@ function displayResults(res) {
 
   } else if (res.mode === 2) {
     // Mode 2 : [H₃O⁺] (Héro) → τ → K exclusivement
-    appendResultCard(grid, '[H₃O⁺]', 'Ions oxonium', 'x = σ / (λ_B + λ_H₃O⁺) · 10⁻³', formatNumber(res.x), 'mol/L', true);
-    appendResultCard(grid, 'τ', 'Taux final', 'τ = x / C', formatNumber(res.tau, 'tau'), '', false, tauGaugeHtml);
+    appendResultCard(grid, '[H₃O⁺]', 'Ion Oxonium', 'x = σ / (λ_B + λ_H₃O⁺) · 10⁻³', formatNumber(res.x), 'mol/L', true);
+    appendResultCard(grid, 'τ', 'Taux de réaction', 'τ = x / C', formatNumber(res.tau, 'tau'), '', false, tauGaugeHtml);
     appendResultCard(grid, 'K', "Constante d'acidité", 'K = x² / (C − x)', formatNumber(res.K), '', false);
 
     stepsContainer.innerHTML = `
@@ -130,9 +137,9 @@ function displayResults(res) {
           <span class="step-title">Conditions expérimentales de conductimétrie</span>
         </div>
         <div class="step-content">
-          <div class="step-sub">• Concentration initiale en acide : C = ${formatNumber(res.C)} mol/L</div>
+          <div class="step-sub">• Concentration initiale en acide faible : C = ${formatNumber(res.C)} mol/L</div>
           <div class="step-sub">• Conductivité mesurée de la solution : σ = ${formatNumber(res.sigma_SI)} S/m</div>
-          <div class="step-sub">• Conductivité molaire ionique de la base : λ_B = ${formatNumber(res.lambda_B_SI)} S·m²·mol⁻¹</div>
+          <div class="step-sub">• Conductivité molaire ionique de la base conjuguée : λ_B = ${formatNumber(res.lambda_B_SI)} S·m²·mol⁻¹</div>
           <div class="step-sub">• Conductivité molaire ionique de H₃O⁺ : λ_H₃O⁺ = ${formatNumber(res.lambda_H3O_SI)} S·m²·mol⁻¹</div>
         </div>
       </div>
@@ -159,7 +166,7 @@ function displayResults(res) {
         <div class="step-content">
           <div class="step-formula">τ = x / C</div>
           <div class="step-sub"><strong>Application numérique :</strong> τ = (${formatNumber(res.x)}) / (${formatNumber(res.C)})</div>
-          <div class="step-res">⇒ τ = ${formatNumber(res.tau, 'tau')} (soit ${(res.tau * 100).toFixed(2).replace('.', ',')} %)</div>
+          <div class="step-res">⇒ τ = ${formatNumber(res.tau, 'tau')} (soit ${(res.tau * 100).toFixed(2).replace('.', ',')} % de l'acide réagi)</div>
         </div>
       </div>
 
@@ -179,7 +186,7 @@ function displayResults(res) {
       <div class="solution-step">
         <div class="step-badge-row">
           <span class="step-badge">Contrôle</span>
-          <span class="step-title">Vérification thermodynamique</span>
+          <span class="step-title">Vérification thermodynamique de conformité</span>
         </div>
         <div class="step-content">
           <div class="step-formula">K_vérif = (${formatNumber(res.x)})² / (${formatNumber(res.C)} − ${formatNumber(res.x)}) = ${formatNumber(res.K_verif)}</div>
@@ -193,9 +200,9 @@ function displayResults(res) {
     if (res.n !== null) {
       appendResultCard(grid, "C'", 'Concentration diluée', 'C\' = C / n', formatNumber(res.C_prime), 'mol/L', false);
     }
-    appendResultCard(grid, '[H₃O⁺]', 'Ions oxonium', 'x = (−K + √(K² + 4KC\')) / 2', formatNumber(res.x), 'mol/L', true);
-    appendResultCard(grid, 'pH', 'Potentiel hydrogène', 'pH = −log₁₀(x)', formatNumber(res.pH, 'pH'), '', true);
-    appendResultCard(grid, 'τ', 'Taux final', 'τ = x / C\'', formatNumber(res.tau, 'tau'), '', false, tauGaugeHtml);
+    appendResultCard(grid, '[H₃O⁺]', 'Ion Oxonium', 'x = (−K + √(K² + 4KC\')) / 2', formatNumber(res.x), 'mol/L', true);
+    appendResultCard(grid, 'pH', 'Potentiel Hydrogène', 'pH = −log₁₀(x)', formatNumber(res.pH, 'pH'), '', true);
+    appendResultCard(grid, 'τ', 'Taux de réaction', 'τ = x / C\'', formatNumber(res.tau, 'tau'), '', false, tauGaugeHtml);
     if (res.sigma !== null) {
       appendResultCard(grid, 'σ', 'Conductivité', 'σ = x · (λ_B + λ_H₃O⁺) · 10³', formatNumber(res.sigma), 'S/m', false);
     }
@@ -207,7 +214,7 @@ function displayResults(res) {
       <div class="solution-step">
         <div class="step-badge-row">
           <span class="step-badge">Données</span>
-          <span class="step-title">Conditions thermodynamiques initiales</span>
+          <span class="step-title">Conditions initiales du système chimique</span>
         </div>
         <div class="step-content">
           <div class="step-sub">• Concentration initiale en acide : C = ${formatNumber(res.C)} mol/L</div>
@@ -247,7 +254,7 @@ function displayResults(res) {
           <div class="step-formula">x = [H₃O⁺] = (−K + √(K² + 4·K·C')) / 2</div>
           <div class="step-sub"><strong>Application numérique :</strong> x = (−${formatNumber(res.K)} + ${formatNumber(sqrtDelta)}) / 2</div>
           <div class="step-res">⇒ x = [H₃O⁺] = ${formatNumber(res.x)} mol/L (racine physique retenue)</div>
-          <div class="step-sub" style="color: var(--accent-gold);">✓ Validité confirmée : 0 &lt; ${formatNumber(res.x)} &lt; ${formatNumber(res.C_prime)} mol/L.</div>
+          <div class="step-sub" style="color: var(--accent-gold);">✓ Validité thermodynamique confirmée : 0 &lt; ${formatNumber(res.x)} &lt; ${formatNumber(res.C_prime)} mol/L.</div>
         </div>
       </div>
 
@@ -285,14 +292,14 @@ function displayResults(res) {
         <div class="step-content">
           <div class="step-formula">τ = x / C'</div>
           <div class="step-sub"><strong>Application numérique :</strong> τ = (${formatNumber(res.x)}) / (${formatNumber(res.C_prime)})</div>
-          <div class="step-res">⇒ τ = ${formatNumber(res.tau, 'tau')} (soit ${(res.tau * 100).toFixed(2).replace('.', ',')} %)</div>
+          <div class="step-res">⇒ τ = ${formatNumber(res.tau, 'tau')} (soit ${(res.tau * 100).toFixed(2).replace('.', ',')} % de l'acide réagi)</div>
         </div>
       </div>
 
       <div class="solution-step">
         <div class="step-badge-row">
           <span class="step-badge">Contrôle</span>
-          <span class="step-title">Vérification de la constante d'acidité</span>
+          <span class="step-title">Vérification thermodynamique de la constante d'acidité</span>
         </div>
         <div class="step-content">
           <div class="step-formula">K_vérif = (${formatNumber(res.x)})² / (${formatNumber(res.C_prime)} − ${formatNumber(res.x)}) = ${formatNumber(res.K_verif)}</div>

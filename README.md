@@ -1,17 +1,19 @@
-# ChimieLab — Instrument Scientifique pour Acide Faible dans l'Eau
+# ChimieLab — Atelier Atomique pour Acide Faible dans l'Eau
 
-ChimieLab est une application web d'excellence pour la résolution rigoureuse des exercices de chimie sur les acides faibles dans l'eau (pH-métrie, conductimétrie, constante d'acidité $K$, dilution). Conçue à la croisée d'un instrument scientifique de laboratoire et d'une publication éditoriale haut de gamme, elle offre une expérience de calcul fluide et une rédaction pas à pas conforme aux exigences des examens et concours.
+ChimieLab est une application web d'avant-garde dédiée à la résolution rigoureuse des exercices de chimie sur les acides faibles dans l'eau (pH-métrie, conductimétrie, constante d'acidité $K$, dilution). Conçue sous la direction artistique **ATOMIC ATELIER**, elle fusionne typographie suisse expérimentale, mise en page éditoriale de luxe, visualisation moléculaire interactive et rédaction pas à pas conforme aux exigences académiques les plus strictes.
 
 ---
 
-## Esthétique et Identité Visuelle
+## Direction Artistique : « ATOMIC ATELIER »
 
-- **Palette Dark Chocolate & Champagne** : Teintes chocolat noir profond (`#12100F`, `#191614`, `#201C19`), accents or champagne (`#D4AD70`) et texte ivoire crémeux (`#F5EFE5`).
-- **Mode Clair Éditorial** : Thème champagne clair inspiré des traités scientifiques classiques.
-- **Typographie de Haute Précision** :
-  - Titres et élégance éditoriale : *Instrument Serif*
-  - Interface et lisibilité : *Manrope*
-  - Équations, données et unités : *JetBrains Mono*
+- **Palette Espresso & Champagne Fondu** : Teintes espresso d'atelier (`#0C0A09`, `#14110F`, `#1A1613`), reflets champagne fondu (`#E2B874`), ambre minéral (`#E08A3C`) et ivoire chaud (`#F6F0E6`).
+- **Trame d'Architecte & Vignette Atmosphérique** : Grille millimétrée subtile et halo lumineux zénithal évoquant un laboratoire d'orfèvrerie scientifique.
+- **Visualisation Moléculaire Canvas** : Simulation dynamique en direct des particules d'équilibre ($HA \rightleftharpoons H_3O^+ + A^-$) avec réactivité gravitationnelle au curseur et respect de `prefers-reduced-motion`.
+- **Système Typographique d'Avant-Garde** :
+  - En-tête monumental & titres éditoriaux : *Instrument Serif*
+  - Index de section, chiffres géants & badges : *Syne*
+  - Interface utilisateur & cartouches scientifiques : *Manrope*
+  - Équations, données et unités de laboratoire : *JetBrains Mono*
 
 ---
 
@@ -20,24 +22,20 @@ ChimieLab est une application web d'excellence pour la résolution rigoureuse de
 1. **3 Modes de Calcul Scientifiques (Conformes au Cours)** :
    - **Mode 01 — $C$ et $\text{pH}$** : Mesure au pH-mètre $\rightarrow$ $[H_3O^+]$, $\tau$, $K$ (et $\sigma$ si $\lambda_B$ est fourni).
    - **Mode 02 — $C$ et $\sigma$** : Mesure conductimétrique $\rightarrow$ $[H_3O^+]$, $\tau$, $K$ exclusivement.
-   - **Mode 03 — $C$ et $K$ (avec dilution facultative $n$)** : Équation du second degré $\rightarrow$ $C'$, $[H_3O^+]$, $\text{pH}$, $\tau$ (et $\sigma$ si $\lambda_B$ est fourni).
+   - **Mode 03 — $C$ et $K$ (avec dilution facultative $n$)** : Résolution du second degré $\rightarrow$ $C'$, $[H_3O^+]$, $\text{pH}$, $\tau$ (et $\sigma$ si $\lambda_B$ est fourni).
 
-2. **Bannière Contextuelle Dynamique** :
-   - Présentation claire des données requises par l'énoncé et des grandeurs calculées par ChimieLab.
+2. **Console de Saisie Instrumentale** :
+   - Champs tactiles haute précision (50px) avec sélecteurs d'unités intégrés ($\text{mol/L}$, $\text{S/m}$, $\text{mS/m}$, $\text{mS}\cdot\text{m}^2\cdot\text{mol}^{-1}$, $\text{S}\cdot\text{m}^2\cdot\text{mol}^{-1}$).
+   - Prise en charge universelle des virgules, points décimaux et notations scientifiques ($1.0\text{e-}2$, $10^{-2}$).
+   - En Modes 1 et 3, module conductimétrique optionnel : $\lambda_{H_3O^+}$ (défaut $35,0\text{ mS}\cdot\text{m}^2\cdot\text{mol}^{-1}$) n'est pris en compte que si $\lambda_B$ est renseigné.
 
-3. **Workspace de Saisie Instrumentale** :
-   - Champs confortables (hauteur 48px) avec sélecteurs d'unités intégrés ($\text{mol/L}$, $\text{S/m}$, $\text{mS/m}$, $\text{mS}\cdot\text{m}^2\cdot\text{mol}^{-1}$, $\text{S}\cdot\text{m}^2\cdot\text{mol}^{-1}$).
-   - Prise en charge des virgules, points et notations scientifiques ($1.0\text{e-}2$, $10^{-2}$).
-   - En Modes 1 et 3, regroupement optionnel sous *« Pour calculer la conductivité $\sigma$ (optionnel) »* : $\lambda_{H_3O^+}$ avec sa valeur par défaut ($35,0\text{ mS}\cdot\text{m}^2\cdot\text{mol}^{-1}$) n'est requis que si $\lambda_B$ est renseigné.
+3. **Restitution des Résultats de Type Monographie** :
+   - **Carte Héro $[H_3O^+]$** : Grande typographie lumineuse avec badge de conformité thermodynamique.
+   - **Jauge d'Équilibre Double** : Visualisation proportionnelle du taux de dissociation $\tau$ vs fraction intacte $(1-\tau)$.
+   - Boutons de copie rapide sur chaque grandeur calculée.
 
-4. **Présentation des Résultats de Type Rapport Scientifique** :
-   - Carte Héro mise en avant pour la grandeur principale ($[H_3O^+]$).
-   - Jauge de dissociation $\tau$ intégrée directement dans la carte de taux d'avancement.
-   - Badge de conformité thermodynamique ($K_{\text{vérifié}} = K_{\text{théorique}}$).
-   - Boutons de copie rapide sur chaque grandeur.
-
-5. **Rédaction Pas à Pas de Type Examen** :
-   - Structure académique officielle :
+4. **Rédaction Pas à Pas de Type Examen** :
+   - Structure académique officielle en 5 étapes numérotées :
      - $01 \text{ — Données initiales}$
      - $02 \text{ — Formule littérale}$
      - $03 \text{ — Application numérique}$
@@ -46,11 +44,11 @@ ChimieLab est une application web d'excellence pour la résolution rigoureuse de
    - Bouton **« Copier la solution »** (texte brut structuré prêt à coller dans un rapport ou devoir).
    - Bouton **« Exporter en PDF »** (feuille d'examen vectorielle via la feuille de style `@media print`).
 
-6. **Historique des 5 Derniers Calculs** :
+5. **Historique des 5 Derniers Calculs** :
    - Enregistrement automatique en mémoire de session.
    - Restauration instantanée du mode, des paramètres et des unités en un clic sur **Recharger**.
 
-7. **Suite de Tests Automatisée (« Tester »)** :
+6. **Suite de Tests Automatisée (« Tester »)** :
    - Modale exécutant 27+ assertions numériques réelles sur le moteur de calcul scientifique (tolérance relative 0,5 %, pH : 0,01).
 
 ---
@@ -61,7 +59,7 @@ ChimieLab est une application web d'excellence pour la résolution rigoureuse de
 2. Sélectionner la situation de l'exercice (**Mode 01**, **Mode 02** ou **Mode 03**).
 3. Renseigner les grandeurs numériques fournies par l'énoncé.
 4. Cliquer sur **Calculer la solution** (ou appuyer sur la touche `Entrée`).
-5. Consulter les cartes de résultats, la rédaction d'examen ou exporter en PDF.
+5. Consulter les cartes de résultats, la monographie d'examen ou exporter en PDF.
 
 ---
 
@@ -69,12 +67,13 @@ ChimieLab est une application web d'excellence pour la résolution rigoureuse de
 
 ```text
 chimielab-acide-faible/
-├── index.html            : Structure sémantique complète (Dark Chocolate & Champagne)
+├── index.html            : Structure sémantique d'avant-garde (Atelier Atomique)
 ├── css/
-│   ├── variables.css     : Jetons de design (thèmes sombre & clair, typographie, or champagne)
-│   ├── base.css          : Reset, mise en page éditoriale (max 880px), en-tête et styles d'impression PDF
-│   └── components.css    : Cartes de mode, workspace de saisie, cartes héro, rédaction d'examen et modale
+│   ├── variables.css     : Jetons ATOMIC ATELIER (espresso, champagne, ambre, typographies)
+│   ├── base.css          : Grille d'architecte, vignette, télémesure et styles d'impression PDF
+│   └── components.css    : Cartes de mode avec grands index, console de saisie, jauge d'équilibre
 ├── js/
+│   ├── canvas.js         : Visualisation moléculaire interactive (particules en équilibre dynamique)
 │   ├── parser.js         : Analyse numérique stricte (virgule décimale, puissances de 10)
 │   ├── format.js         : Formatage scientifique d'affichage et texte brut
 │   ├── units.js          : Conversions d'unités centralisées (source unique de vérité)
