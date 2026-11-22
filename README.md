@@ -1,65 +1,71 @@
-# ChimieLab — Atelier Atomique pour Acide Faible dans l'Eau
+# ChimieLab — Instrument Scientifique pour l'Enseignement de la Chimie
 
-ChimieLab est une application web d'avant-garde dédiée à la résolution rigoureuse des exercices de chimie sur les acides faibles dans l'eau (pH-métrie, conductimétrie, constante d'acidité $K$, dilution). Conçue sous la direction artistique **ATOMIC ATELIER**, elle fusionne typographie suisse expérimentale, mise en page éditoriale de luxe, visualisation moléculaire interactive et rédaction pas à pas conforme aux exigences académiques les plus strictes.
+ChimieLab est une application web d'excellence pour la résolution rigoureuse des exercices de chimie sur les acides faibles dans l'eau (pH-métrie, conductimétrie, constante d'acidité $K$, dilution). Conçue selon la direction **Timeless Academic Luxury**, elle allie l'élégance éditoriale d'un traité de chimie classique et la lisibilité irréprochable d'un logiciel pédagogique moderne à destination des professeurs et étudiants.
 
 ---
 
-## Direction Artistique : « ATOMIC ATELIER »
+## Esthétique et Direction : « Timeless Academic Luxury »
 
-- **Palette Espresso & Champagne Fondu** : Teintes espresso d'atelier (`#0C0A09`, `#14110F`, `#1A1613`), reflets champagne fondu (`#E2B874`), ambre minéral (`#E08A3C`) et ivoire chaud (`#F6F0E6`).
-- **Trame d'Architecte & Vignette Atmosphérique** : Grille millimétrée subtile et halo lumineux zénithal évoquant un laboratoire d'orfèvrerie scientifique.
-- **Visualisation Moléculaire Canvas** : Simulation dynamique en direct des particules d'équilibre ($HA \rightleftharpoons H_3O^+ + A^-$) avec réactivité gravitationnelle au curseur et respect de `prefers-reduced-motion`.
-- **Système Typographique d'Avant-Garde** :
-  - En-tête monumental & titres éditoriaux : *Instrument Serif*
-  - Index de section, chiffres géants & badges : *Syne*
-  - Interface utilisateur & cartouches scientifiques : *Manrope*
-  - Équations, données et unités de laboratoire : *JetBrains Mono*
+- **Palette Chocolat Noir & Or Champagne** : Teintes chocolat profond (`#14110F`, `#201B18`, `#29221D`), texte ivoire crémeux à fort contraste (`#F5F0E8`, `#C2B6A7`) et accents or champagne (`#D6B477`).
+- **Mode Clair Parchemin Académique** : Thème haute couture inspiré des planches imprimées universitaires (`#F7F4EE`, encre sépia `#1A1614`).
+- **Confort de Lecture et Accessibilité Maximale** :
+  - Corps de texte entre 16 et 18px.
+  - Libellés d'entrées confortables à 16px.
+  - Grands titres éditoriaux en *Instrument Serif* (26–30px).
+  - Champs de saisie tactiles et spacieux (52px de hauteur).
+  - Aucune information véhiculée par la seule couleur ; contrastes validés WCAG.
+- **Système Typographique** :
+  - Titres et élégance académique : *Instrument Serif*
+  - Interface, explications et lisibilité : *Manrope*
+  - Notations mathématiques, formules et données : *JetBrains Mono*
 
 ---
 
 ## Fonctionnalités Principales
 
-1. **3 Modes de Calcul Scientifiques (Conformes au Cours)** :
+1. **3 Modes de Calcul Scientifiques (Conformes aux Programmes)** :
    - **Mode 01 — $C$ et $\text{pH}$** : Mesure au pH-mètre $\rightarrow$ $[H_3O^+]$, $\tau$, $K$ (et $\sigma$ si $\lambda_B$ est fourni).
    - **Mode 02 — $C$ et $\sigma$** : Mesure conductimétrique $\rightarrow$ $[H_3O^+]$, $\tau$, $K$ exclusivement.
    - **Mode 03 — $C$ et $K$ (avec dilution facultative $n$)** : Résolution du second degré $\rightarrow$ $C'$, $[H_3O^+]$, $\text{pH}$, $\tau$ (et $\sigma$ si $\lambda_B$ est fourni).
 
-2. **Console de Saisie Instrumentale** :
-   - Champs tactiles haute précision (50px) avec sélecteurs d'unités intégrés ($\text{mol/L}$, $\text{S/m}$, $\text{mS/m}$, $\text{mS}\cdot\text{m}^2\cdot\text{mol}^{-1}$, $\text{S}\cdot\text{m}^2\cdot\text{mol}^{-1}$).
-   - Prise en charge universelle des virgules, points décimaux et notations scientifiques ($1.0\text{e-}2$, $10^{-2}$).
-   - En Modes 1 et 3, module conductimétrique optionnel : $\lambda_{H_3O^+}$ (défaut $35,0\text{ mS}\cdot\text{m}^2\cdot\text{mol}^{-1}$) n'est pris en compte que si $\lambda_B$ est renseigné.
+2. **Bannière Contextuelle Dynamique** :
+   - Explication limpide sous les cartes de mode avec distinction immédiate entre *Données fournies* et *Grandeurs calculées*.
 
-3. **Restitution des Résultats de Type Monographie** :
-   - **Carte Héro $[H_3O^+]$** : Grande typographie lumineuse avec badge de conformité thermodynamique.
-   - **Jauge d'Équilibre Double** : Visualisation proportionnelle du taux de dissociation $\tau$ vs fraction intacte $(1-\tau)$.
-   - Boutons de copie rapide sur chaque grandeur calculée.
+3. **Workspace de Saisie Instrumentale** :
+   - Champs haute précision avec sélecteurs d'unités ($\text{mol/L}$, $\text{S/m}$, $\text{mS/m}$, $\text{mS}\cdot\text{m}^2\cdot\text{mol}^{-1}$, $\text{S}\cdot\text{m}^2\cdot\text{mol}^{-1}$).
+   - Prise en charge des virgules, des points et des puissances de 10 ($1,0\text{e-}2$, $10^{-2}$).
+   - En Modes 1 et 3, regroupement optionnel : $\lambda_{H_3O^+}$ (défaut $35,0\text{ mS}\cdot\text{m}^2\cdot\text{mol}^{-1}$) n'est pris en compte que si $\lambda_B$ est renseigné.
 
-4. **Rédaction Pas à Pas de Type Examen** :
+4. **Présentation des Résultats de Type Rapport Scientifique** :
+   - Grande carte héro $[H_3O^+]$ avec badge de conformité thermodynamique ($K_{\text{vérifié}} = K_{\text{théorique}}$).
+   - Jauge d'équilibre clair : pourcentage dissocié ($\tau$) vs intact ($1-\tau$).
+   - Boutons de copie rapide sur chaque grandeur.
+
+5. **Rédaction Pas à Pas de Type Examen** :
    - Structure académique officielle en 5 étapes numérotées :
      - $01 \text{ — Données initiales}$
      - $02 \text{ — Formule littérale}$
      - $03 \text{ — Application numérique}$
      - $04 \text{ — Calcul intermédiaire (discriminant, substitutions)}$
      - $05 \text{ — Résultat encadré avec unités et validation}$
-   - Bouton **« Copier la solution »** (texte brut structuré prêt à coller dans un rapport ou devoir).
-   - Bouton **« Exporter en PDF »** (feuille d'examen vectorielle via la feuille de style `@media print`).
+   - Bouton **« Copier la solution »** (texte brut soigné prêt à coller dans un rapport).
+   - Bouton **« Exporter en PDF »** (feuille d'examen vectorielle via `@media print`).
 
-5. **Historique des 5 Derniers Calculs** :
-   - Enregistrement automatique en mémoire de session.
-   - Restauration instantanée du mode, des paramètres et des unités en un clic sur **Recharger**.
+6. **Historique des 5 Derniers Calculs** :
+   - Mémorisation de session avec rechargement instantané de l'état, des paramètres et des unités.
 
-6. **Suite de Tests Automatisée (« Tester »)** :
-   - Modale exécutant 27+ assertions numériques réelles sur le moteur de calcul scientifique (tolérance relative 0,5 %, pH : 0,01).
+7. **Suite de Tests Automatisée (« Tester »)** :
+   - Modale exécutant 29 assertions numériques réelles sur le moteur thermodynamique (tolérance relative 0,5 %, pH : 0,01).
 
 ---
 
 ## Utilisation
 
 1. Ouvrir le fichier `index.html` dans n'importe quel navigateur moderne (double-clic, compatible protocole local `file://`).
-2. Sélectionner la situation de l'exercice (**Mode 01**, **Mode 02** ou **Mode 03**).
+2. Sélectionner la situation de l'exercice (**Mode 1**, **Mode 2** ou **Mode 3**).
 3. Renseigner les grandeurs numériques fournies par l'énoncé.
-4. Cliquer sur **Calculer la solution** (ou appuyer sur la touche `Entrée`).
-5. Consulter les cartes de résultats, la monographie d'examen ou exporter en PDF.
+4. Cliquer sur **Calculer la solution** (ou appuyer sur `Entrée`).
+5. Consulter le bilan des grandeurs, la rédaction pas à pas ou exporter en PDF.
 
 ---
 
@@ -67,13 +73,12 @@ ChimieLab est une application web d'avant-garde dédiée à la résolution rigou
 
 ```text
 chimielab-acide-faible/
-├── index.html            : Structure sémantique d'avant-garde (Atelier Atomique)
+├── index.html            : Structure sémantique épurée (Timeless Academic Luxury)
 ├── css/
-│   ├── variables.css     : Jetons ATOMIC ATELIER (espresso, champagne, ambre, typographies)
-│   ├── base.css          : Grille d'architecte, vignette, télémesure et styles d'impression PDF
-│   └── components.css    : Cartes de mode avec grands index, console de saisie, jauge d'équilibre
+│   ├── variables.css     : Jetons de design (chocolat noir, or champagne, ivoire, parchemin)
+│   ├── base.css          : Mise en page centrée (max 860px), en-tête et styles d'impression PDF
+│   └── components.css    : Cartes de mode (plaque ivoire active), formulaires (52px), résultats et modale
 ├── js/
-│   ├── canvas.js         : Visualisation moléculaire interactive (particules en équilibre dynamique)
 │   ├── parser.js         : Analyse numérique stricte (virgule décimale, puissances de 10)
 │   ├── format.js         : Formatage scientifique d'affichage et texte brut
 │   ├── units.js          : Conversions d'unités centralisées (source unique de vérité)

@@ -10,34 +10,34 @@ function updateModeContextBanner() {
   if (state.mode === 1) {
     banner.innerHTML = `
       <div class="context-desc">
-        Vous connaissez la concentration initiale <strong>C</strong> et le <strong>pH</strong> mesuré de la solution.
+        Vous connaissez la concentration initiale <strong>C</strong> et le <strong>pH</strong> mesuré au pH-mètre.
       </div>
       <div class="context-chips-group">
-        <span class="context-label">Données :</span>
+        <span class="context-label">Données fournies :</span>
         <span class="chip-tag accent">C</span>
         <span class="chip-tag accent">pH</span>
         <span class="chip-tag">(λ_B facultatif)</span>
         <span class="chip-arrow">→</span>
-        <span class="context-label">Résultats :</span>
+        <span class="context-label">Grandeurs calculées :</span>
         <span class="chip-tag">[H₃O⁺]</span>
         <span class="chip-tag">τ</span>
         <span class="chip-tag">K</span>
-        <span class="chip-tag">(σ)</span>
+        <span class="chip-tag">(σ si λ_B)</span>
       </div>
     `;
   } else if (state.mode === 2) {
     banner.innerHTML = `
       <div class="context-desc">
-        Vous connaissez la concentration <strong>C</strong>, la conductivité <strong>σ</strong> et les conductivités molaires <strong>λ</strong>.
+        Vous connaissez la concentration <strong>C</strong>, la conductivité <strong>σ</strong> et les conductivités molaires ioniques <strong>λ</strong>.
       </div>
       <div class="context-chips-group">
-        <span class="context-label">Données :</span>
+        <span class="context-label">Données fournies :</span>
         <span class="chip-tag accent">C</span>
         <span class="chip-tag accent">σ</span>
         <span class="chip-tag accent">λ_B</span>
         <span class="chip-tag accent">λ_H₃O⁺</span>
         <span class="chip-arrow">→</span>
-        <span class="context-label">Résultats :</span>
+        <span class="context-label">Grandeurs calculées :</span>
         <span class="chip-tag">[H₃O⁺]</span>
         <span class="chip-tag">τ</span>
         <span class="chip-tag">K</span>
@@ -46,20 +46,20 @@ function updateModeContextBanner() {
   } else if (state.mode === 3) {
     banner.innerHTML = `
       <div class="context-desc">
-        Vous connaissez la concentration <strong>C</strong> (ou <strong>C'</strong> si diluée) et la constante <strong>K</strong>.
+        Vous connaissez la concentration <strong>C</strong> (ou <strong>C'</strong> après dilution) et la constante d'acidité <strong>K</strong>.
       </div>
       <div class="context-chips-group">
-        <span class="context-label">Données :</span>
+        <span class="context-label">Données fournies :</span>
         <span class="chip-tag accent">C</span>
         <span class="chip-tag accent">K</span>
         <span class="chip-tag">(n dilution)</span>
         <span class="chip-tag">(λ_B facultatif)</span>
         <span class="chip-arrow">→</span>
-        <span class="context-label">Résultats :</span>
+        <span class="context-label">Grandeurs calculées :</span>
         <span class="chip-tag">[H₃O⁺]</span>
         <span class="chip-tag">pH</span>
         <span class="chip-tag">τ</span>
-        <span class="chip-tag">(σ)</span>
+        <span class="chip-tag">(σ si λ_B)</span>
       </div>
     `;
   }
@@ -493,7 +493,7 @@ function selectMode(m) {
       c.classList.add('active');
       c.setAttribute('aria-selected', 'true');
       if (indicator) {
-        indicator.innerHTML = '<svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.8 7L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        indicator.innerHTML = '<svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1.5 5L4.5 8.5L10.5 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
       }
     } else {
       c.classList.remove('active');

@@ -1,128 +1,125 @@
-/* css/variables.css — Système de Design : ATOMIC ATELIER (ChimieLab) */
+/* css/variables.css — Système de Design : Timeless Academic Luxury (ChimieLab) */
 
 :root,
 [data-theme="dark"] {
-  /* Surfaces sombres : Espresso Profond, Warm Obsidian & Ardoise */
-  --bg-main: #0C0A09;
-  --bg-secondary: #14110F;
-  --bg-card: #1A1613;
-  --bg-card-hover: #221D18;
-  --bg-elevated: #26201B;
-  --bg-input: #120F0D;
-  --bg-input-focus: #181411;
+  /* Surfaces : Palette Dark Chocolate & Warm Obsidian */
+  --bg-main: #14110F;
+  --bg-surface: #201B18;
+  --bg-elevated: #29221D;
+  --bg-card: #201B18;
+  --bg-card-hover: #27211C;
+  --bg-input: #181412;
+  --bg-input-focus: #1E1916;
 
-  /* Typographie : Warm Ivory, Antique Parchment & Champagne Mist */
-  --text-primary: #F7F2E7;
-  --text-secondary: #C4B6A5;
-  --text-muted: #857766;
-  --text-faint: #574D41;
+  /* Typographie : Warm Ivory & Antique Sepia (Contraste élevé pour lisibilité maximale) */
+  --text-primary: #F5F0E8;
+  --text-secondary: #C2B6A7;
+  --text-muted: #9E9180;
+  --text-faint: #6E6457;
 
-  /* Accents de fusion : Molten Champagne, Gold & Amber */
-  --accent-gold: #E2B874;
-  --accent-gold-hover: #F0CF96;
-  --accent-gold-bright: #FBE5BD;
-  --accent-amber: #E08A3C;
-  --accent-gold-dim: rgba(226, 184, 116, 0.10);
-  --accent-gold-glow: rgba(226, 184, 116, 0.20);
-  --accent-amber-glow: rgba(224, 138, 60, 0.22);
+  /* Accents Or Champagne & Bronze Chaud */
+  --accent-gold: #D6B477;
+  --accent-gold-hover: #E5C995;
+  --accent-gold-bright: #F7E7C8;
+  --accent-gold-dim: rgba(214, 180, 119, 0.12);
+  --accent-gold-glow: rgba(214, 180, 119, 0.22);
+  --accent-amber: #D9883B;
 
-  /* Lignes de repères et grilles architecturales */
-  --border-subtle: rgba(226, 184, 116, 0.14);
-  --border-medium: rgba(226, 184, 116, 0.25);
-  --border-strong: rgba(226, 184, 116, 0.45);
-  --border-card: rgba(226, 184, 116, 0.16);
+  /* Bordures raffinées en bronze chaud */
+  --border-subtle: rgba(214, 180, 119, 0.18);
+  --border-medium: rgba(214, 180, 119, 0.28);
+  --border-strong: rgba(214, 180, 119, 0.50);
+  --border-card: rgba(214, 180, 119, 0.20);
 
-  /* Ombres & Radiance cinématique */
-  --card-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(226, 184, 116, 0.12);
-  --hero-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(226, 184, 116, 0.20);
-  --gold-glow: 0 0 35px rgba(226, 184, 116, 0.15);
-  --button-glow: 0 10px 32px rgba(226, 184, 116, 0.32);
+  /* Ombres douces et naturelles */
+  --card-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(214, 180, 119, 0.14);
+  --card-shadow-hover: 0 16px 40px -8px rgba(0, 0, 0, 0.75), 0 0 0 1px var(--accent-gold);
+  --modal-shadow: 0 24px 60px -10px rgba(0, 0, 0, 0.85), 0 0 0 1px var(--accent-gold);
+  --button-shadow: 0 8px 24px rgba(214, 180, 119, 0.25);
 
-  /* Validation & Statuts scientifiques */
-  --error-bg: #2B1111;
+  /* Validation & Messages d'alerte */
+  --error-bg: #2D1414;
   --error-text: #FCA5A5;
-  --error-border: rgba(239, 68, 68, 0.40);
-  --success-bg: #112616;
+  --error-border: rgba(239, 68, 68, 0.45);
+  --success-bg: #142819;
   --success-text: #86EFAC;
-  --success-border: rgba(34, 197, 94, 0.40);
+  --success-border: rgba(34, 197, 94, 0.45);
 
-  /* Blocs d'équations & Formules mathématiques */
-  --formula-bg: #15110E;
-  --formula-text: #F7F2E7;
-  --formula-border: #E2B874;
+  /* Formules & Blocs de cours */
+  --formula-bg: #1A1513;
+  --formula-text: #F5F0E8;
+  --formula-border: #D6B477;
 
-  /* Cartes sélectionnées (Mode Actif : Plaque Ivoire Instrumentale) */
-  --mode-active-bg: #F7F2E7;
-  --mode-active-text: #0C0A09;
+  /* Carte Sélectionnée (Plaque Ivoire selon la capture d'écran d'origine) */
+  --mode-active-bg: #F5EFE5;
+  --mode-active-text: #14110F;
   --mode-active-sub: #4A3E31;
-  --mode-active-border: #E2B874;
+  --mode-active-border: #D6B477;
 
-  /* Système typographique d'avant-garde */
+  /* Typographie académique & lisibilité confort */
   --font-serif: 'Instrument Serif', 'Cormorant Garamond', Georgia, serif;
-  --font-display: 'Syne', sans-serif;
   --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, Monaco, monospace;
 
-  /* Rayons géométriques mesurés (non excessivement arrondis) */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  /* Rayons équilibrés et sobres */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
   --radius-pill: 9999px;
 }
 
 [data-theme="light"] {
-  /* Surfaces claires : Atelier Parchment & Warm Marble */
-  --bg-main: #F7F4EC;
-  --bg-secondary: #EFE9DC;
+  /* Surfaces : Parchemin académique de luxe & Marbre chaud */
+  --bg-main: #F7F4EE;
+  --bg-surface: #FFFFFF;
+  --bg-elevated: #EFE9DE;
   --bg-card: #FFFFFF;
-  --bg-card-hover: #FCFAF5;
-  --bg-elevated: #F2ECE0;
+  --bg-card-hover: #FAF7F0;
   --bg-input: #FFFFFF;
   --bg-input-focus: #FFFFFF;
 
-  /* Typographie : Rich Espresso Ink & Deep Sepia */
-  --text-primary: #1C1814;
-  --text-secondary: #6B5E4E;
-  --text-muted: #9E8E7C;
-  --text-faint: #C9BDB0;
+  /* Typographie : Encre sépia profonde */
+  --text-primary: #1A1614;
+  --text-secondary: #5C5245;
+  --text-muted: #857868;
+  --text-faint: #B5A897;
 
-  /* Accents de luxe : Old Gold & Amber */
-  --accent-gold: #9E7432;
-  --accent-gold-hover: #825E27;
-  --accent-gold-bright: #B58842;
-  --accent-amber: #B86720;
-  --accent-gold-dim: rgba(158, 116, 50, 0.08);
-  --accent-gold-glow: rgba(158, 116, 50, 0.18);
-  --accent-amber-glow: rgba(184, 103, 32, 0.18);
+  /* Accents Or Ancien & Bronze */
+  --accent-gold: #9B7434;
+  --accent-gold-hover: #826028;
+  --accent-gold-bright: #B58B46;
+  --accent-gold-dim: rgba(155, 116, 52, 0.10);
+  --accent-gold-glow: rgba(155, 116, 52, 0.20);
+  --accent-amber: #A85B1B;
 
   /* Bordures */
-  --border-subtle: rgba(158, 116, 50, 0.16);
-  --border-medium: rgba(158, 116, 50, 0.28);
-  --border-strong: rgba(158, 116, 50, 0.50);
-  --border-card: rgba(158, 116, 50, 0.18);
+  --border-subtle: rgba(155, 116, 52, 0.18);
+  --border-medium: rgba(155, 116, 52, 0.30);
+  --border-strong: rgba(155, 116, 52, 0.55);
+  --border-card: rgba(155, 116, 52, 0.18);
 
   /* Ombres */
-  --card-shadow: 0 16px 40px -10px rgba(28, 24, 20, 0.08), 0 0 0 1px rgba(158, 116, 50, 0.14);
-  --hero-shadow: 0 24px 60px -12px rgba(28, 24, 20, 0.12), 0 0 0 1px rgba(158, 116, 50, 0.22);
-  --gold-glow: 0 0 25px rgba(158, 116, 50, 0.10);
-  --button-glow: 0 8px 24px rgba(158, 116, 50, 0.25);
+  --card-shadow: 0 10px 30px -8px rgba(26, 22, 20, 0.08), 0 0 0 1px rgba(155, 116, 52, 0.16);
+  --card-shadow-hover: 0 16px 40px -8px rgba(26, 22, 20, 0.12), 0 0 0 1px var(--accent-gold);
+  --modal-shadow: 0 24px 60px -10px rgba(26, 22, 20, 0.20), 0 0 0 1px var(--accent-gold);
+  --button-shadow: 0 8px 24px rgba(155, 116, 52, 0.22);
 
   /* Validation */
   --error-bg: #FEF2F2;
   --error-text: #991B1B;
-  --error-border: rgba(239, 68, 68, 0.35);
+  --error-border: rgba(239, 68, 68, 0.40);
   --success-bg: #F0FDF4;
   --success-text: #166534;
-  --success-border: rgba(34, 197, 94, 0.35);
+  --success-border: rgba(34, 197, 94, 0.40);
 
   /* Formules */
-  --formula-bg: #F2ECE0;
-  --formula-text: #1C1814;
-  --formula-border: #9E7432;
+  --formula-bg: #F3ECE1;
+  --formula-text: #1A1614;
+  --formula-border: #9B7434;
 
-  /* Cartes sélectionnées */
-  --mode-active-bg: #1C1814;
-  --mode-active-text: #F7F4EC;
-  --mode-active-sub: #B5A99A;
-  --mode-active-border: #9E7432;
+  /* Carte Sélectionnée en mode clair */
+  --mode-active-bg: #1A1614;
+  --mode-active-text: #F7F4EE;
+  --mode-active-sub: #C2B6A7;
+  --mode-active-border: #9B7434;
 }

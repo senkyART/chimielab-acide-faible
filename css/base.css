@@ -1,4 +1,4 @@
-/* css/base.css — ATOMIC ATELIER : Mise en page architecturale, Hero et Typographie */
+/* css/base.css — Timeless Academic Luxury : Mise en page, En-tête et Styles d'Impression */
 
 * {
   box-sizing: border-box;
@@ -19,117 +19,49 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.25s ease, color 0.25s ease;
   position: relative;
-  overflow-x: hidden;
 }
 
-/* Grille architecturale en filigrane (Swiss Grid millimétrique) */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: 
-    linear-gradient(to right, var(--border-subtle) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--border-subtle) 1px, transparent 1px);
-  background-size: 48px 48px;
-  background-position: center top;
-  opacity: 0.35;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Vignette atmosphérique et lueur de fusion champagne */
-body::after {
-  content: '';
-  position: fixed;
-  top: -120px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 1100px;
-  height: 540px;
-  background: radial-gradient(ellipse at 50% 10%, var(--accent-gold-glow) 0%, var(--accent-amber-glow) 25%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-}
-
+/* Conteneur principal centré — Lisibilité optimale (max 860px) */
 .container {
   width: 100%;
-  max-width: 940px;
+  max-width: 860px;
   margin: 0 auto;
-  padding: 28px 24px 90px 24px;
-  position: relative;
-  z-index: 1;
+  padding: 36px 24px 80px 24px;
 }
 
 /* ==========================================================================
-   BARRE TECHNIQUE DE TÉLÉMÉTRIE SUPÉRIEURE & EN-TÊTE
+   EN-TÊTE ÉLÉGANT ET COMPACT
    ========================================================================== */
-
-.top-telemetry-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border-subtle);
-  margin-bottom: 20px;
-}
-
-.telemetry-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.telemetry-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--accent-gold);
-  box-shadow: 0 0 8px var(--accent-gold);
-  display: inline-block;
-}
 
 .site-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 24px;
   margin-bottom: 36px;
-  padding-bottom: 22px;
-  border-bottom: 1px solid var(--border-medium);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .brand-block {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
 }
 
 .brand-emblem {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-sm);
-  background: linear-gradient(145deg, var(--bg-elevated) 0%, var(--bg-card) 100%);
-  border: 1px solid var(--border-strong);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  border: 1.5px solid var(--accent-gold);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--accent-gold);
-  box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(226, 184, 116, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   flex-shrink: 0;
-  transition: all 0.25s ease;
-}
-
-.brand-emblem:hover {
-  transform: translateY(-2px);
-  border-color: var(--accent-gold);
-  box-shadow: 0 8px 24px -2px var(--accent-gold-glow);
 }
 
 .brand-titles {
@@ -139,24 +71,23 @@ body::after {
 
 .brand-name {
   font-family: var(--font-serif);
-  font-size: 2.35rem;
-  line-height: 1;
+  font-size: 2.15rem;
+  line-height: 1.05;
   font-weight: 400;
   color: var(--text-primary);
   letter-spacing: -0.01em;
 }
 
 .brand-subtitle {
-  font-family: var(--font-display);
-  font-size: 0.68rem;
-  font-weight: 700;
+  font-size: 0.75rem;
+  font-weight: 600;
   color: var(--accent-gold);
-  letter-spacing: 0.18em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  margin-top: 5px;
+  margin-top: 4px;
 }
 
-/* Actions d'en-tête */
+/* Boutons d'en-tête */
 .header-actions {
   display: flex;
   align-items: center;
@@ -164,39 +95,36 @@ body::after {
 }
 
 .header-btn {
-  background: var(--bg-card);
+  background: var(--bg-surface);
   border: 1px solid var(--border-medium);
   color: var(--text-secondary);
   border-radius: var(--radius-sm);
   padding: 8px 14px;
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   font-weight: 600;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
-  font-family: var(--font-display);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-family: var(--font-sans);
 }
 
 .header-btn:hover {
   border-color: var(--accent-gold);
   color: var(--text-primary);
   background: var(--bg-card-hover);
-  box-shadow: 0 4px 16px -2px var(--accent-gold-glow);
-  transform: translateY(-1px);
+  box-shadow: 0 2px 10px var(--accent-gold-dim);
 }
 
 .header-btn .btn-badge {
   background: var(--accent-gold-dim);
   color: var(--accent-gold);
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  padding: 1px 6px;
-  border-radius: var(--radius-sm);
+  padding: 1px 7px;
+  border-radius: var(--radius-pill);
   border: 1px solid var(--border-subtle);
 }
 
@@ -208,149 +136,49 @@ body::after {
 }
 
 /* ==========================================================================
-   HERO SECTION MONUMENTALE AVEC CANVA MOLÉCULAIRE INTERACTIF
+   SECTIONS ACADÉMIQUES ET EN-TÊTES NUMÉROTÉS
    ========================================================================== */
 
-.hero-atelier {
-  display: grid;
-  grid-template-columns: 1.25fr 0.95fr;
-  align-items: center;
-  gap: 28px;
-  background: linear-gradient(155deg, rgba(26, 22, 19, 0.85) 0%, rgba(18, 15, 13, 0.95) 100%);
-  border: 1px solid var(--border-medium);
-  border-radius: var(--radius-lg);
-  padding: 32px 34px;
-  margin-bottom: 36px;
-  box-shadow: var(--hero-shadow);
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(8px);
+.page-section {
+  margin-bottom: 38px;
 }
-
-@media (max-width: 780px) {
-  .hero-atelier {
-    grid-template-columns: 1fr;
-    padding: 24px 20px;
-    gap: 20px;
-  }
-}
-
-.hero-atelier::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent 0%, var(--accent-gold) 35%, var(--accent-amber) 75%, transparent 100%);
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-}
-
-.hero-meta-label {
-  font-family: var(--font-display);
-  font-size: 0.7rem;
-  font-weight: 800;
-  color: var(--accent-gold);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.hero-title {
-  font-family: var(--font-serif);
-  font-size: 3rem;
-  line-height: 1.05;
-  font-weight: 400;
-  color: var(--text-primary);
-  margin-bottom: 14px;
-  letter-spacing: -0.015em;
-}
-
-.hero-title em {
-  font-style: italic;
-  color: var(--accent-gold-bright);
-}
-
-.hero-desc {
-  font-size: 0.92rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  max-width: 460px;
-}
-
-/* Zone du canvas moléculaire interactif */
-.hero-canvas-wrapper {
-  position: relative;
-  height: 180px;
-  width: 100%;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  background: var(--bg-main);
-  overflow: hidden;
-  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.4);
-}
-
-#atomic-canvas {
-  width: 100%;
-  height: 100%;
-  display: block;
-  cursor: crosshair;
-}
-
-.canvas-overlay-label {
-  position: absolute;
-  bottom: 8px;
-  right: 10px;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  color: var(--accent-gold);
-  background: rgba(12, 10, 9, 0.75);
-  padding: 2px 6px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-subtle);
-  pointer-events: none;
-}
-
-/* ==========================================================================
-   EN-TÊTES DE SECTIONS ÉDITORIALES
-   ========================================================================== */
 
 .section-header-block {
   display: flex;
-  align-items: baseline;
+  align-items: flex-start;
   gap: 14px;
-  margin-bottom: 16px;
-  border-left: 2px solid var(--accent-gold);
-  padding-left: 14px;
+  margin-bottom: 20px;
 }
 
-.section-num-badge {
-  font-family: var(--font-display);
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
+.section-num-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent-gold);
   color: var(--accent-gold);
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  background: var(--bg-surface);
 }
 
 .section-header-text h2 {
   font-family: var(--font-serif);
-  font-size: 1.6rem;
+  font-size: 1.75rem;
   font-weight: 400;
   color: var(--text-primary);
   line-height: 1.2;
 }
 
 .section-header-text p {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  margin-top: 3px;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
 }
 
 /* ==========================================================================
@@ -358,43 +186,39 @@ body::after {
    ========================================================================== */
 
 .site-footer {
-  margin-top: 64px;
-  padding-top: 28px;
-  border-top: 1px solid var(--border-medium);
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-subtle);
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 16px;
-  font-size: 0.82rem;
-  color: var(--text-muted);
+  gap: 14px;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
 }
 
-.footer-brand {
-  font-family: var(--font-serif);
-  font-size: 1.05rem;
-  color: var(--text-secondary);
+.footer-brand strong {
+  color: var(--accent-gold);
 }
 
 .footer-links {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 16px;
 }
 
 .footer-link {
   background: transparent;
   border: none;
   color: var(--accent-gold);
-  font-size: 0.8rem;
+  font-size: 0.92rem;
   cursor: pointer;
   text-decoration: underline;
-  text-underline-offset: 4px;
-  transition: all 0.15s ease;
-  font-family: var(--font-display);
+  text-underline-offset: 3px;
+  transition: color 0.15s ease;
+  font-family: var(--font-sans);
   font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
 }
 
 .footer-link:hover {
@@ -402,7 +226,7 @@ body::after {
 }
 
 /* ==========================================================================
-   EXPORTATION IMPRIMÉE & PDF HAUTE DÉFINITION (STYLE MONOGRAPHIE ACADÉMIQUE)
+   EXPORTATION IMPRIMÉE & PDF HAUTE DÉFINITION
    ========================================================================== */
 
 @media print {
@@ -410,20 +234,15 @@ body::after {
     background: #FFFFFF !important;
     color: #12100F !important;
   }
-  body::before, body::after {
-    display: none !important;
-  }
   .container {
     max-width: 100% !important;
     padding: 0 !important;
     margin: 0 !important;
   }
-  .top-telemetry-bar,
   .site-header,
-  .hero-atelier,
   .modes-grid,
   .mode-context-banner,
-  .glass-panel,
+  .form-panel,
   .solution-actions,
   .history-section,
   .site-footer,
